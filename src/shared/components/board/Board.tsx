@@ -1,17 +1,18 @@
-import React from 'react';
-import {BoardInterface} from "./board.interface";
+import React, { FC } from 'react';
+import { BoardProps } from "./board.interface";
 import Button from "../../ui/button/Button";
 
-const Board = ({props}: BoardInterface) => {
-	const boardCollection = props.map(
-		(item: { link: string; title: string | number }, index: number) =>
+//  uuid
+const Board: FC<BoardProps> = ({ tasks }) => {
+	const boardCollection = tasks.map(
+		(task) =>
 		<li>
 			<div
 				className='desk'
-				key={index}
+				key={task.id}
 			>
 				<h3>
-					{item.title}
+					{task.title}
 				</h3>
 
 				<Button
@@ -20,9 +21,10 @@ const Board = ({props}: BoardInterface) => {
 			</div>
 		</li>
 	);
+
 	return (
 		<ol>
-			{boardCollection}
+			{ boardCollection }
 		</ol>
 	);
 };

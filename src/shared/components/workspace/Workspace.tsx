@@ -1,6 +1,7 @@
 import React from 'react';
 import {WorkspaceInterface} from "./workspace.interface";
 import Button from "../../ui/button/Button";
+import {Task} from "../board/board.interface";
 
 const Workspace = ({props}: WorkspaceInterface) => {
 	const boardCollection = props.map((item: {boards: any}) =>
@@ -12,7 +13,7 @@ const Workspace = ({props}: WorkspaceInterface) => {
 	);
 
 	const workspaceCollection = props.map(
-		(item: { link: string; text: string | number, boards: any }, index: number) =>
+		(item: { link: string; text: string | number, boards: Task[] }, index: number) =>
 			<li>
 				<a
 					className='link'

@@ -1,6 +1,5 @@
 import React from 'react';
 import {ButtonComponentProps} from "./button.interface";
-
 const Button = (
 	{
 		title,
@@ -13,6 +12,9 @@ const Button = (
 	const clickHandler = () => {
 		console.log('btn');
 	}
+
+	// classnames
+	// bem-classname
 
 	return (
 		<button

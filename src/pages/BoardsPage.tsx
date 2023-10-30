@@ -8,14 +8,17 @@ const BoardsPage = () => {
 				Рабочее пространство 1
 			</h2>
 			<Board
-				props={[
+				tasks={[
 					{
+						id: '1',
 						title: 'Доска 1'
 					},
 					{
+						id: '2',
 						title: 'Доска 2'
 					},
 					{
+						id: '3',
 						title: 'Доска 3'
 					},
 				]}
