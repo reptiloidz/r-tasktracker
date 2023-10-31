@@ -1,29 +1,28 @@
 import React from 'react';
-import {WorkspaceInterface} from "./workspace.interface";
 import Button from "../../ui/button/Button";
-import {Task} from "../board/board.interface";
+import {WorkspaceProps} from "./typings";
 
-const Workspace = ({props}: WorkspaceInterface) => {
-	const boardCollection = props.map((item: {boards: any}) =>
-		item.boards.map((i: {boardTitle: string}, index: number) =>
-			<div
-				key={index}
-			>{i.boardTitle}</div>
-		)
-	);
+const Workspace = ({ workspaces }: WorkspaceProps) => {
+	// const boardCollection = props.map((item: {boards: any}) =>
+	// 	item.boards.map((i: {boardTitle: string}, index: number) =>
+	// 		<div
+	// 			key={index}
+	// 		>{i.boardTitle}</div>
+	// 	)
+	// );
 
-	const workspaceCollection = props.map(
-		(item: { link: string; text: string | number, boards: Task[] }, index: number) =>
+	const workspaceCollection = workspaces.map(
+		(workspace) =>
 			<li>
 				<a
 					className='link'
-					key={index}
-					href={item.link}
+					key={workspace.id}
+					href={workspace.link}
 				>
-					{item.text}
+					{workspace.text}
 				</a>
 
-				{boardCollection}
+				{/*{boardCollection}*/}
 
 				<Button
 					btnText="Создать доску"

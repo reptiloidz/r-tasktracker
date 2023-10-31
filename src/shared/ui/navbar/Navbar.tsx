@@ -1,18 +1,18 @@
 import React from 'react';
-import {NavbarInterface} from "./navbar.interface";
+import {NavbarProps} from "./typings";
 
-const Navbar = ({props}: NavbarInterface) => {
-	const textCollection = props.map(
-		(item: { link: string; text: string | number, id: string }, index: number) =>
-		<li>
-			<a
-				className='link'
-				key={index}
-				href={item.link}
-			>
-				{item.text}
-			</a>
-		</li>
+const Navbar = ({ navs }: NavbarProps) => {
+	const textCollection = navs.map(
+		(nav) =>
+			<li>
+				<a
+					className='link'
+					key={nav.id}
+					href={nav.link}
+				>
+					{nav.text}
+				</a>
+			</li>
 	);
 
 	return (
