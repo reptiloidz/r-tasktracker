@@ -1,17 +1,27 @@
 import React from 'react';
 import {NavbarProps} from "./typings";
+import {NavLink, NavLinkProps} from "react-router-dom";
 
-const Navbar = ({ navs }: NavbarProps) => {
+const linkClasses: string = 'link';
+
+// TODO: тип isActive
+const setActive = ({isActive}: any) => {
+	return linkClasses + (isActive ? ' link--active' : '');
+};
+
+const Navbar = ({navs}: NavbarProps) => {
 	const textCollection = navs.map(
 		(nav) =>
-			<li>
-				<a
-					className='link'
-					key={nav.id}
-					href={nav.link}
+			<li key={nav.id}>
+				{/*
+					link для spa, чтобы не перезагружалась страница
+				*/}
+				<NavLink
+					className={setActive}
+					to={nav.link}
 				>
 					{nav.text}
-				</a>
+				</NavLink>
 			</li>
 	);
 
@@ -22,4 +32,4 @@ const Navbar = ({ navs }: NavbarProps) => {
 	);
 };
 
-export default Navbar;
+export {Navbar};

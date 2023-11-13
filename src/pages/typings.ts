@@ -3,33 +3,33 @@ import {Task} from "../shared/components/board/typings";
 
 export const WorkspaceData: Workspaces[] = [
 	{
-		id: 'asa',
-		link: '/board',
+		id: 'w1',
 		text: 'Рабочее пространство 1',
 	},
 	{
-		id: 'asas',
-		link: '/board',
+		id: 'w2',
 		text: 'Рабочее пространство 2',
 	},
 	{
-		id: 'asasa',
-		link: '/board',
+		id: 'w3',
 		text: 'Рабочее пространство 3',
 	},
 ];
 
-export const BoardsData: Task[] = [
+export const BoardData: Task[] = [
 	{
-		id: '1',
-		title: 'Доска 1'
+		id: 'd1',
+		title: 'Доска 1',
+		relatedTo: 'w1',
 	},
 	{
-		id: '2',
-		title: 'Доска 2'
+		id: 'd2',
+		title: 'Доска 2',
+		relatedTo: 'w2',
 	},
 	{
-		id: '3',
-		title: 'Доска 3'
+		id: 'd3',
+		title: 'Доска 3',
+		relatedTo: 'w3',
 	}
 ];

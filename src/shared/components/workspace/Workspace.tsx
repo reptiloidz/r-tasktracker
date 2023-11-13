@@ -1,6 +1,7 @@
 import React from 'react';
-import Button from "../../ui/button/Button";
-import {WorkspaceProps} from "./typings";
+import {Button} from "../../ui/button/Button";
+import {WorkspaceProps, Workspaces} from "./typings";
+import {Link} from "react-router-dom";
 
 const Workspace = ({ workspaces }: WorkspaceProps) => {
 	// const boardCollection = props.map((item: {boards: any}) =>
@@ -12,21 +13,20 @@ const Workspace = ({ workspaces }: WorkspaceProps) => {
 	// );
 
 	const workspaceCollection = workspaces.map(
-		(workspace) =>
-			<li>
-				<a
+		(workspace: Workspaces) =>
+			<li
+				key={workspace.id}
+			>
+				<Link
 					className='link'
-					key={workspace.id}
-					href={workspace.link}
+					to={`/board/${workspace.id}`}
 				>
-					{workspace.text}
-				</a>
+					{workspace.text} {workspace.id}
+				</Link>
 
 				{/*{boardCollection}*/}
 
-				<Button
-					btnText="Создать доску"
-				/>
+				<Button button={[{children: 'Создать доску'}]}/>
 			</li>
 	);
 
@@ -43,4 +43,4 @@ const Workspace = ({ workspaces }: WorkspaceProps) => {
 	);
 };
 
-export default Workspace;
+export {Workspace};

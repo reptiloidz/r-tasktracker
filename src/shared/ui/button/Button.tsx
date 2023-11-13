@@ -1,14 +1,13 @@
 import React from 'react';
-import {ButtonComponentProps} from "./button.interface";
-const Button = (
-	{
-		title,
-		type,
-		btnText,
-		btnClass,
-		props,
-	}: ButtonComponentProps
-) => {
+import {BtnProps} from "./typings";
+
+const Button = ({
+	title,
+	type,
+	className,
+	children, ...rest
+}: BtnProps) => {
+
 	const clickHandler = () => {
 		console.log('btn');
 	}
@@ -20,11 +19,13 @@ const Button = (
 		<button
 			title={title}
 			type={type ? type : 'button'}
-			{...props}
-			className={'btn' + (btnClass ? ' ' + btnClass : '')}
+			className={'btn' + (className ? ' ' + className : '')}
 			onClick={clickHandler}
-		>{btnText}</button>
+			{...rest}
+		>
+			{children}
+		</button>
 	);
 };
 
-export default Button;
+export {Button};

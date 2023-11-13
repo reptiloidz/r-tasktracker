@@ -5,5 +5,4 @@ export interface WorkspaceProps {
 export type Workspaces = {
 	id: string;
 	text: string;
-	link: string;
 }
