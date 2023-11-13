@@ -5,7 +5,7 @@ import {NavLink, NavLinkProps} from "react-router-dom";
 const linkClasses: string = 'link';
 
 // TODO: тип isActive
-const setActive = ({isActive}: any) => {
+const setActive = ({ isActive }: { isActive: boolean }) => {
 	return linkClasses + (isActive ? ' link--active' : '');
 };
 

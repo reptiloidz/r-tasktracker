@@ -1,8 +1,10 @@
 export interface WorkspaceProps {
-	workspaces: Workspaces[],
+	workspaces: Workspace[];
 }
 
-export type Workspaces = {
-	id: string;
-	text: string;
+export type Workspace = {
+	id: number;
+	userId: number;
+	body: string;
+	title: string;
 }

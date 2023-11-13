@@ -1,18 +1,24 @@
-import {Workspaces} from "../shared/components/workspace/typings";
+import {Workspace} from "../shared/components/workspace/typings";
 import {Task} from "../shared/components/board/typings";
 
-export const WorkspaceData: Workspaces[] = [
+export const WorkspaceData: Workspace[] = [
 	{
-		id: 'w1',
-		text: 'Рабочее пространство 1',
+		id: 1,
+		title: 'Рабочее пространство 1',
+		userId: 1,
+		body: 'Содержание доски'
 	},
 	{
-		id: 'w2',
-		text: 'Рабочее пространство 2',
+		id: 2,
+		title: 'Рабочее пространство 2',
+		userId: 1,
+		body: 'Содержание доски'
 	},
 	{
-		id: 'w3',
-		text: 'Рабочее пространство 3',
+		id: 3,
+		title: 'Рабочее пространство 3',
+		userId: 1,
+		body: 'Содержание доски'
 	},
 ];
 
@@ -20,16 +26,16 @@ export const BoardData: Task[] = [
 	{
 		id: 'd1',
 		title: 'Доска 1',
-		relatedTo: 'w1',
+		relatedTo: 1,
 	},
 	{
 		id: 'd2',
 		title: 'Доска 2',
-		relatedTo: 'w2',
+		relatedTo: 2,
 	},
 	{
 		id: 'd3',
 		title: 'Доска 3',
-		relatedTo: 'w3',
+		relatedTo: 1,
 	}
 ];

@@ -3,12 +3,16 @@ import {BtnProps} from "./typings";
 
 const Button = ({
 	title,
-	type,
+	type = 'button',
 	className,
-	children, ...rest
+	children,
+	onClick,
+	...rest
 }: BtnProps) => {
-
-	const clickHandler = () => {
+	const clickHandler: BtnProps['onClick'] = (e) => {
+		if (onClick) {
+			onClick(e);
+		}
 		console.log('btn');
 	}
 
@@ -17,13 +21,13 @@ const Button = ({
 
 	return (
 		<button
-			title={title}
-			type={type ? type : 'button'}
+			title={ title }
+			type={ type }
 			className={'btn' + (className ? ' ' + className : '')}
-			onClick={clickHandler}
-			{...rest}
+			onClick={ clickHandler }
+			{ ...rest }
 		>
-			{children}
+			{ children }
 		</button>
 	);
 };

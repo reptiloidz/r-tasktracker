@@ -6,12 +6,16 @@ import {useParams} from "react-router-dom";
 //  uuid
 const Board = ({ tasks }: BoardProps) => {
 
-	const {id} = useParams();
+	const { id } = useParams();
 	console.log()
+
+	if (!id) {
+		return null;
+	}
 
 	const boardCollection = tasks.map(
 		(task: Task) =>
-			id === task.relatedTo ?
+			id === task.relatedTo.toString() ?
 			(
 				<li
 					key={task.id}
@@ -25,7 +29,7 @@ const Board = ({ tasks }: BoardProps) => {
 							{task.title}
 						</h3>
 
-						<Button button={[{children: 'Добавить карточку'}]}/>
+						<Button onClick={() => alert('sss')}>Добавить карточку</Button>
 					</div>
 				</li>
 				)
