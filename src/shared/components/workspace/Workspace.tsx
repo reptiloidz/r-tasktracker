@@ -3,7 +3,7 @@ import {Button} from "../../ui/button/Button";
 import {WorkspaceProps} from "./typings";
 import {Link} from "react-router-dom";
 
-const Workspace = ({ workspaces }: WorkspaceProps) => {
+const Workspace = ({workspaces}: WorkspaceProps) => {
 	// const boardCollection = props.map((item: {boards: any}) =>
 	// 	item.boards.map((i: {boardTitle: string}, index: number) =>
 	// 		<div
@@ -23,10 +23,6 @@ const Workspace = ({ workspaces }: WorkspaceProps) => {
 				>
 					{workspace.title} {workspace.id}
 				</Link>
-
-				{/*{boardCollection}*/}
-
-				<Button>Создать доску</Button>
 			</li>
 	);
 
@@ -36,9 +32,17 @@ const Workspace = ({ workspaces }: WorkspaceProps) => {
 				Рабочие пространства
 			</h2>
 
-			<ul>
-				{workspaceCollection}
-			</ul>
+			{
+				workspaceCollection.length !== 0
+				? <ul>
+					{workspaceCollection}
+				</ul>
+
+				: <p>
+					Не&nbsp;найдено рабочих пространств. Создайте новое, чтобы начать работу
+				</p>
+			}
+			
 		</React.Fragment>
 	);
 };

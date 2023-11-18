@@ -5,6 +5,6 @@ export interface WorkspaceProps {
 export type Workspace = {
 	id: number;
 	userId: number;
-	body: string;
+	description: string;
 	title: string;
 }

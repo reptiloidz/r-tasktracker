@@ -1,6 +1,6 @@
-import {ButtonHTMLAttributes} from "react";
+import React from "react";
 
-export interface BtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface BtnProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>  {
 	title?: string,
 	btnClass?: string,
 	children?: string,

@@ -1,0 +1,62 @@
+// ===============================================
+// GRID SYSTEM MIXINS
+// ===============================================
+
+
+@use 'sass:math';
+
+@mixin make-cssgrid-cols($breakpoints: $grid-breakpoints) {
+	@each $breakpoint in map-keys($breakpoints) {
+		$prefix: breakpoint-prefix($breakpoint, $breakpoints);
+
+		// stylelint-disable-next-line order/order
+		@include media-breakpoint-up($breakpoint, $breakpoints) {
+			@if ($columns > 0) {
+				@for $i from 1 through $columns {
+					.#{$prefix}col-#{$i} {
+						grid-column-end: span $i;
+					}
+				}
+
+				/*
+					Start with `1` because `0` is and invalid value.
+					Ends with `$columns - 1` because offsetting by the width of an entire row isn't possible.
+				*/
+				@for $i from 1 through ($columns - 1) {
+					.#{$prefix}col-start-#{$i} {
+						grid-column-start: $i;
+					}
+				}
+
+				.#{$prefix}col-start-auto {
+					grid-column-start: auto;
+				}
+			}
+		}
+	}
+}
+
+@mixin make-cssgrid-rows($breakpoints: $grid-breakpoints) {
+	@each $breakpoint in map-keys($breakpoints) {
+		$prefix: breakpoint-prefix($breakpoint, $breakpoints);
+
+		// stylelint-disable-next-line order/order
+		@include media-breakpoint-up($breakpoint, $breakpoints) {
+			// stylelint-disable-next-line order/order
+			$i: 2;
+
+			@while $i <= $columns {
+				.#{$prefix}row-cols-#{$i} {
+					--grid-columns: #{$i};
+
+					> * {
+						grid-column: auto;
+					}
+				}
+
+				// stylelint-disable-next-line order/order
+				$i: $i + 1;
+			}
+		}
+	}
+}

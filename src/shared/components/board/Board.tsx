@@ -29,7 +29,7 @@ const Board = ({ tasks }: BoardProps) => {
 							{task.title}
 						</h3>
 
-						<Button onClick={() => alert('sss')}>Добавить карточку</Button>
+						<Button className='btn btn--primary' onClick={() => alert('sss')}>Добавить карточку</Button>
 					</div>
 				</li>
 				)

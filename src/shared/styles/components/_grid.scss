@@ -1,0 +1,33 @@
+// ===============================================
+// GRID
+// ===============================================
+
+
+.row {
+	--gutter-x: #{$columns-gutter-x};
+	--gutter-y: #{$columns-gutter-y};
+	--grid-columns: #{$columns};
+
+	@include make-cssgrid-cols;
+
+	display: grid !important;
+	grid-template-columns: repeat(var(--grid-columns), 1fr);
+	gap: var(--gutter-y) var(--gutter-x);
+	height: fit-content;
+
+	> * {
+		grid-column: auto/span var(--grid-columns);
+	}
+
+	&--auto-cols {
+		grid-template-columns: auto;
+		grid-auto-flow: column;
+		width: fit-content;
+
+		> * {
+			grid-column: auto;
+		}
+	}
+}
+
+@include make-cssgrid-rows;

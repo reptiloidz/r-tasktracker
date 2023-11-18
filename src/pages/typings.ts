@@ -6,19 +6,19 @@ export const WorkspaceData: Workspace[] = [
 		id: 1,
 		title: 'Рабочее пространство 1',
 		userId: 1,
-		body: 'Содержание доски'
+		description: 'Содержание доски'
 	},
 	{
 		id: 2,
 		title: 'Рабочее пространство 2',
 		userId: 1,
-		body: 'Содержание доски'
+		description: 'Содержание доски'
 	},
 	{
 		id: 3,
 		title: 'Рабочее пространство 3',
 		userId: 1,
-		body: 'Содержание доски'
+		description: 'Содержание доски'
 	},
 ];
 

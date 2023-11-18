@@ -1,0 +1,46 @@
+.btn {
+	@include btn();
+
+	padding-right: 32px;
+	padding-left: 32px;
+	background-color: var(--btn-bg-cl);
+	box-shadow: var(--btn-shadow);
+	color: var(--btn-main-cl);
+	width: var(--w);
+	border-radius: 8px;
+	height: 56px;
+	font-weight: 700;
+	transition: background-color .2s ease, box-shadow .2s ease;
+
+	&:focus {
+		outline: none;
+	}
+
+
+	&--primary {
+		--btn-bg-cl: var(--btn-primary-normal-bg-cl);
+		--btn-shadow: var(--btn-primary-normal-shadow);
+		--btn-cl: var(--btn-primary-normal-cl);
+
+		&:focus {
+			--btn-bg-cl: var(--btn-primary-focus-bg-cl);
+			--btn-shadow: var(--btn-primary-focus-shadow);
+			--btn-cl: var(--btn-primary-focus-cl);
+		}
+
+		&:hover {
+			--btn-bg-cl: var(--btn-primary-hover-bg-cl);
+			--btn-shadow: var(--btn-primary-hover-shadow);
+			--btn-cl: var(--btn-primary-hover-cl);
+		}
+	}
+
+	&--secondary {
+	}
+
+	&--xs {
+		height: 40px;
+		padding-right: 16px;
+		padding-left: 16px;
+	}
+}

@@ -1,0 +1,35 @@
+$colors: (
+	palette: (
+		white: #ffffff,
+		black: #000000,
+		gray: #ebebeb,
+		cyan-bluish-gray: #abb8c3,
+		pale-pink: #f78da7,
+		vivid-red: #cf2e2e,
+		luminous-vivid-orange: #ff6900,
+		luminous-vivid-amber: #fcb900,
+		green: #6ec82a,
+		light-green-cyan: #7bdcb5,
+		vivid-green-cyan: #00d084,
+		pale-cyan-blue: #8ed1fc,
+		vivid-cyan-blue: #0693e3,
+		vivid-purple: #9b51e0,
+	),
+);
+
+:root {
+
+
+@include get-colors(map-get($colors, palette));
+
+@include
+get-alpha($colors, 'black',
+	(
+		40: .3,
+	)
+);
+
+//@include get-ctx(map-get($colors, context));
+
+
+}

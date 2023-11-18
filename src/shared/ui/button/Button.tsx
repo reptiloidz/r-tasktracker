@@ -23,7 +23,7 @@ const Button = ({
 		<button
 			title={ title }
 			type={ type }
-			className={'btn' + (className ? ' ' + className : '')}
+			className={className ? className : ''}
 			onClick={ clickHandler }
 			{ ...rest }
 		>

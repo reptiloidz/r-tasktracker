@@ -1,18 +1,19 @@
 import React from 'react';
 import {NavbarProps} from "./typings";
-import {NavLink, NavLinkProps} from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import {Button} from "../button/Button";
 
-const linkClasses: string = 'link';
+const linkClasses: string = 'navbar__link';
 
 // TODO: тип isActive
 const setActive = ({ isActive }: { isActive: boolean }) => {
-	return linkClasses + (isActive ? ' link--active' : '');
+	return linkClasses + (isActive ? ' navbar__link--active' : '');
 };
 
 const Navbar = ({navs}: NavbarProps) => {
 	const textCollection = navs.map(
 		(nav) =>
-			<li key={nav.id}>
+			<li className='navbar__item' key={nav.id}>
 				{/*
 					link для spa, чтобы не перезагружалась страница
 				*/}
@@ -26,7 +27,7 @@ const Navbar = ({navs}: NavbarProps) => {
 	);
 
 	return (
-		<ul>
+		<ul className='navbar__list container'>
 			{textCollection}
 		</ul>
 	);
