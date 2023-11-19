@@ -1,44 +1,50 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {Workspace} from "../shared/components/workspace/typings";
 import {Button} from "../shared/ui/button/Button";
+import {BoardData} from "./typings";
+import {Board} from "../shared/components/board/Board";
+import {PageHeader} from "../shared/ui/page-header/PageHeader";
+import {useWorkspaces} from "../entities/useWorkspaces";
 
 const WorkspaceDetailsPage = () => {
 	const {id} = useParams();
-	const [workspace, setWorkspace] = useState<Workspace | null>(null);
 	const navigate = useNavigate();
+	const {workspaces} = useWorkspaces();
+
+	let workspaceDetailTitle: string = '';
+
+	workspaces.map((workspace) => {
+			if (workspace.id === id) {
+				workspaceDetailTitle = workspace.title;
+			}
+		}
+	);
 
 	const goBack = () => navigate(-1);
 
-	// useEffect(() => {
-	// 	fetch(`https://jsonplaceholder.typicode.com/posts/?userId=1&id=${id}`)
-	// 		.then<Workspace[]>((response) => response.json())
-	// 		.then((json) => setWorkspace(json[0]))
-	// 		.catch((err) => console.error(err));
-	// }, [id]);
-
 	return (
 		<div>
-			WorkspaceDetailsPage id: {id}
-
-			{/*{*/}
-			{/*	workspace && (*/}
-			{/*		<React.Fragment>*/}
-			{/*			<h2>{workspace.title}</h2>*/}
-			{/*			<p>{workspace.body}</p>*/}
-			{/*			<Link to={`/workspace/${id}/edit`}>*/}
-			{/*				Edit workspace*/}
-			{/*			</Link>*/}
-			{/*		</React.Fragment>*/}
-			{/*	)*/}
-			{/*}*/}
-
-			<Button
-				className='btn btn--primary'
-				onClick={goBack}
+			<PageHeader
+				title={`Рабочее пространство ${workspaceDetailTitle} id: ${id}`}
 			>
-				Назад
-			</Button>
+				<Link
+					className='header__btn btn btn--primary btn--xs'
+					to='edit'
+				>
+					Редактировать
+				</Link>
+
+				<Button
+					className='header__btn btn btn--primary btn--xs'
+					onClick={goBack}
+				>
+					Назад
+				</Button>
+			</PageHeader>
+
+			<Board
+				tasks={BoardData}
+			/>
 		</div>
 	);
 };

@@ -3,8 +3,7 @@ export interface WorkspaceProps {
 }
 
 export type Workspace = {
-	id: number;
-	userId: number;
-	description: string;
+	id: string;
+	description?: string;
 	title: string;
 }

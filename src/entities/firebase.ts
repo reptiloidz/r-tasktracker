@@ -1,5 +1,5 @@
-// todo
-import firebase from 'firebase';
+import firebase from "firebase/app";
+import "firebase/database";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDhXISafxjuQ4Vg_NY4_m4BkJb7Mrfeqrk",
@@ -12,6 +12,6 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
 const database = firebase.database();
-const db = firebase.firestore();
-export {db, database};
+export {database};

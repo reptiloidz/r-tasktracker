@@ -5,7 +5,7 @@
 	padding-left: 32px;
 	background-color: var(--btn-bg-cl);
 	box-shadow: var(--btn-shadow);
-	color: var(--btn-main-cl);
+	color: var(--btn-cl);
 	width: var(--w);
 	border-radius: 8px;
 	height: 56px;
@@ -15,7 +15,6 @@
 	&:focus {
 		outline: none;
 	}
-
 
 	&--primary {
 		--btn-bg-cl: var(--btn-primary-normal-bg-cl);
@@ -42,5 +41,14 @@
 		height: 40px;
 		padding-right: 16px;
 		padding-left: 16px;
+	}
+
+	&.btn--disabled,
+	&:disabled {
+		pointer-events: none;
+
+		--btn-bg-cl: var(--btn-disabled-bg-cl);
+		--btn-shadow: var(--btn-disabled-shadow);
+		--btn-cl: var(--btn-disabled-cl);
 	}
 }

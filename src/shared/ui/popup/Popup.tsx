@@ -5,10 +5,11 @@ import {PopupProps} from "./typings";
 const Popup = ({
 	title,
 	onSubmitText,
-	isOpen,
+	isOpen = false,
 	onSubmit,
 	children,
 	onCancel,
+	isDisabled = false,
 }: PopupProps) => {
 
 	return (
@@ -37,6 +38,8 @@ const Popup = ({
 								<Button
 									className='btn btn--primary btn--xs'
 									onClick={onSubmit}
+									type='submit'
+									disabled={isDisabled}
 								>
 									{onSubmitText}
 								</Button>

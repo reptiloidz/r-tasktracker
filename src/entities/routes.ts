@@ -1,9 +1,9 @@
 import {
-	BOARD_ROUTE,
+	BOARD_DETAIL_ROUTE,
+	// BOARD_ROUTE,
 	LAYOUT_ROUTE,
 	WORKSPACE_DETAIL_ROUTE,
 	WORKSPACE_EDIT_ROUTE,
-	WORKSPACE_NEW_ROUTE,
 	WORKSPACES_ROUTE
 } from "./routeVariables";
 import {BoardPage} from "../pages/BoardPage";
@@ -12,6 +12,7 @@ import {WorkspaceDetailsPage} from "../pages/WorkspaceDetailsPage";
 import {WorkspaceEdit} from "../shared/components/workspace-edit/WorkspaceEdit";
 import {WorkspaceNew} from "../shared/components/workspace-new/WorkspaceNew";
 import {Layout} from "../app/Layout";
+import BoardDetailsPage from "../pages/BoardDetailsPage";
 
 export const publicRoutes = [
 	{
@@ -19,10 +20,10 @@ export const publicRoutes = [
 		path: LAYOUT_ROUTE,
 		element: Layout,
 	},
-	{
-		path: BOARD_ROUTE,
-		element: BoardPage,
-	},
+	// {
+	// 	path: BOARD_ROUTE,
+	// 	element: BoardPage,
+	// },
 	{
 		path: WORKSPACES_ROUTE,
 		element: WorkspacePage,
@@ -36,8 +37,8 @@ export const publicRoutes = [
 		element: WorkspaceEdit,
 	},
 	{
-		path: WORKSPACE_NEW_ROUTE,
-		element: WorkspaceNew,
+		path: BOARD_DETAIL_ROUTE,
+		element: BoardDetailsPage,
 	},
 	// {
 	// 	path: NOT_FOUND_ROUTE,

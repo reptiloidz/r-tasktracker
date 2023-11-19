@@ -5,6 +5,7 @@
 	left: 0;
 	bottom: 0;
 	background-color: var(--ca-black-40);
+	z-index: 1;
 
 	&__dialog {
 		margin: 120px auto;
