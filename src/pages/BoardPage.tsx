@@ -11,9 +11,9 @@ const BoardPage = () => {
 			<h2>
 				Рабочее пространство {id}
 			</h2>
-			<Board
-				tasks={BoardData}
-			/>
+			{/*<Board*/}
+			{/*	tasks={BoardData}*/}
+			{/*/>*/}
 		</React.Fragment>
 
 	);
