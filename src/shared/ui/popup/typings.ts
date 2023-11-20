@@ -10,3 +10,16 @@ export interface PopupProps extends React.DetailedHTMLProps<React.ButtonHTMLAttr
 	children?: ReactNode,
 	isDisabled?: boolean,
 }
+
+export type PopipProps = {
+	title?: string;
+	buttonProps: {
+		onCancel: () => unknown;
+	}
+
+	isOpen?: boolean,
+	// onSubmit?: React.MouseEventHandler<HTMLButtonElement>,
+	onSubmitText?: string,
+	children?: ReactNode,
+	isDisabled?: boolean,
+}

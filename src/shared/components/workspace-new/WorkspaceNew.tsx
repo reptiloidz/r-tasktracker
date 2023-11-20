@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {Button} from "../../ui/button/Button";
-import {Popup} from "../../ui/popup/Popup";
-import {database} from "../../../entities/firebase";
+import React, { useCallback, useState } from 'react';
+import { Button } from "../../ui/button/Button";
+import { Popup } from "../../ui/popup/Popup";
+import { database } from "../../../entities/firebase";
 
 const WorkspaceNew = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -16,14 +16,16 @@ const WorkspaceNew = () => {
 		setIsOpen(false);
 	};
 
-
-
-	const pushNewWorkspace = () => {
+	const pushNewWorkspace = useCallback(() => {
 		database.ref('workspaces').push({
 			title: newWorkspaceTitle,
 			description: newWorkspaceDescription,
 		}).catch(alert);
-	};
+	}, [newWorkspaceDescription, newWorkspaceTitle]);
+
+	const changeHandler: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+		setNewWorkspaceTitle(e.target.value)
+	}
 
 	return (
 		<React.Fragment>
@@ -47,9 +49,10 @@ const WorkspaceNew = () => {
 					{/*</div>*/}
 					<input
 						className='field__control'
-						type='text' placeholder='Название'
-						value={newWorkspaceTitle}
-						onChange={(e) => setNewWorkspaceTitle(e.target.value)}
+						type='text'
+						placeholder='Название'
+						value={ newWorkspaceTitle }
+						onChange={ changeHandler }
 					/>
 				</div>
 				<div className='field'>

@@ -1,5 +1,6 @@
 export interface WorkspaceProps {
 	workspaces: Workspace[];
+	isLoading: boolean;
 }
 
 export type Workspace = {

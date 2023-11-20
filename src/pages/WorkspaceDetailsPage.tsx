@@ -6,19 +6,21 @@ import {Board} from "../shared/components/board/Board";
 import {PageHeader} from "../shared/ui/page-header/PageHeader";
 import {useWorkspaces} from "../entities/hooks";
 
+// GET /workspaces
+// GET /workspaces/{ id }
+
 const WorkspaceDetailsPage = () => {
 	const {id} = useParams();
 	const navigate = useNavigate();
-	const {workspaces} = useWorkspaces();
+	const [loading, workspaces] = useWorkspaces();
 
 	let workspaceDetailTitle: string = '';
 
 	workspaces.map((workspace) => {
-			if (workspace.id === id) {
-				workspaceDetailTitle = workspace.title;
-			}
+		if (workspace.id === id) {
+			workspaceDetailTitle = workspace.title;
 		}
-	);
+	});
 
 	const goBack = () => navigate(-1);
 
