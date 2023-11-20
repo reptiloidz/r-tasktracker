@@ -4,7 +4,7 @@ import {Button} from "../shared/ui/button/Button";
 import {BoardData} from "./typings";
 import {Board} from "../shared/components/board/Board";
 import {PageHeader} from "../shared/ui/page-header/PageHeader";
-import {useWorkspaces} from "../entities/useWorkspaces";
+import {useWorkspaces} from "../entities/hooks";
 
 const WorkspaceDetailsPage = () => {
 	const {id} = useParams();

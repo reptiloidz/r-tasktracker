@@ -4,13 +4,16 @@ import {Button} from "../../ui/button/Button";
 import {Link, useParams} from "react-router-dom";
 import {Popup} from "../../ui/popup/Popup";
 import {database} from "../../../entities/firebase";
+import {Dropdown} from "../../ui/dropdown/Dropdown";
+import {useWorkspaces} from "../../../entities/hooks";
 
 //  uuid
 const Board = ({tasks}: BoardProps) => {
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [newBoardTitle, setNewBoardTitle] = useState('');
-	const [newBoardDescription, setNewBoardDescription] = useState('');
+	//todo use memo for select
+	const [newBoardRelated, setNewBoardRelated] = useState('');
 
 	const createBoard = () => {
 		setIsOpen(!isOpen);
@@ -24,11 +27,17 @@ const Board = ({tasks}: BoardProps) => {
 	const pushNewBoard = () => {
 		database.ref('boards').push({
 			title: newBoardTitle,
+			relatedTo: newBoardRelated,
 		}).catch(alert);
 	};
 
+	console.log(newBoardRelated)
+
 	const {id} = useParams();
 
+	const {workspaces} = useWorkspaces();
+
+	// todo get board id
 	const boardId = 'q';
 
 	const boardCollection = tasks.map(
@@ -88,14 +97,11 @@ const Board = ({tasks}: BoardProps) => {
 					/>
 				</div>
 
-				<select>
-					<option value="Рабочее пространство 1">
-						Рабочее пространство 1
-					</option>
-					<option value="Рабочее пространство 2">
-						Рабочее пространство 2
-					</option>
-				</select>
+				<Dropdown
+					value={newBoardRelated}
+					onChange={(e: any) => {setNewBoardRelated(e.target.value)}}
+					options={workspaces}
+				></Dropdown>
 			</Popup>
 		</React.Fragment>
 	);

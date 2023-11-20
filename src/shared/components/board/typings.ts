@@ -7,6 +7,5 @@ export interface BoardProps {
 export type Task = {
 	id: string;
 	title: string;
-	description?: string;
 	relatedTo: Workspace['id'];
 }

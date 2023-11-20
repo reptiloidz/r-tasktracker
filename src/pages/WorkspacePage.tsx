@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Workspace} from '../shared/components/workspace/Workspace';
 import {database} from '../entities/firebase';
 import {PageHeader} from "../shared/ui/page-header/PageHeader";
-import {useWorkspaces} from "../entities/useWorkspaces";
+import {useWorkspaces} from "../entities/hooks";
 
 const WorkspacePage = () => {
 	const {workspaces} = useWorkspaces();
