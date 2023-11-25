@@ -32,7 +32,7 @@
 
 	&--interactive {
 		text-decoration: none;
-		transition: background-color .2s ease;
+		transition: box-shadow .2s ease;
 
 		&:focus {
 			outline: none;
@@ -40,8 +40,7 @@
 		}
 
 		&:hover {
-			background-color: var(--cl-gray);
-			box-shadow: inset 0 0 0 2px var(--cl-black);
+			box-shadow: inset 0 0 0 2px var(--cl-black), 0 4px var(--cl-black);
 
 			.widget__title {
 				background-size: 100% 86%;

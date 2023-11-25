@@ -1,20 +1,19 @@
 import React, {useState} from 'react';
-import {BoardProps, Task} from "./typings";
+import {BoardProps, OneBoard} from "./typings";
 import {Button} from "../../ui/button/Button";
 import {Link, useParams} from "react-router-dom";
 import {Popup} from "../../ui/popup/Popup";
 import {database} from "../../../entities/firebase";
 import {Dropdown} from "../../ui/dropdown/Dropdown";
-import {useWorkspaces} from "../../../entities/hooks";
+import {useWorkspaces} from "../../../entities/useWorkspaces";
 
 //  uuid
-const Board = ({tasks}: BoardProps) => {
+const Board = ({boards, isLoading}: BoardProps) => {
 
 	const {id} = useParams();
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [newBoardTitle, setNewBoardTitle] = useState('');
-	//todo use memo for select
 	const [newBoardRelated, setNewBoardRelated] = useState(id);
 
 	const createBoard = () => {
@@ -33,19 +32,20 @@ const Board = ({tasks}: BoardProps) => {
 		}).catch(alert);
 	};
 
-	console.log(newBoardRelated)
+	// console.log(newBoardRelated)
 
-	const {workspaces} = useWorkspaces();
+	const [loading, workspaces] = useWorkspaces();
 
 	// todo get board id
 	const boardId = 'q';
 
-	const boardCollection = tasks.map(
-		(task: Task) =>
-			id === task.relatedTo.toString() ?
+	// boards.filter()
+	const boardCollection = boards.map(
+		(board) =>
+			id === board.relatedTo?.toString() ?
 				(
 					<li
-						key={task.id}
+						key={board.id}
 						/* key пишем у обертки итерируемого эл-та,
 						* иначе ошибка child in a list should have a unique "key" prop. */
 					>
@@ -54,7 +54,7 @@ const Board = ({tasks}: BoardProps) => {
 							to={`/board/${boardId}`}
 						>
 							<h3>
-								{task.title}
+								{board.title}
 							</h3>
 						</Link>
 					</li>
@@ -81,27 +81,37 @@ const Board = ({tasks}: BoardProps) => {
 			<Popup
 				isOpen={isOpen}
 				onCancel={closeModal}
-				onSubmit={pushNewBoard}
-				onSubmitText='Создать'
 				title='Новая доска'
 			>
-				<div className='field'>
-					{/*<div className="field__title">*/}
-					{/*	Название*/}
-					{/*</div>*/}
-					<input
-						className='field__control'
-						type='text' placeholder='Название'
-						value={newBoardTitle}
-						onChange={(e) => setNewBoardTitle(e.target.value)}
-					/>
-				</div>
+				<form className="popup__content">
+					<div className="popup__body">
+						<div className='field'>
+							<input
+								className='field__control'
+								type='text' placeholder='Название'
+								value={newBoardTitle}
+								onChange={(e) => setNewBoardTitle(e.target.value)}
+							/>
+						</div>
 
-				<Dropdown
-					value={newBoardRelated}
-					onChange={(e: any) => {setNewBoardRelated(e.target.value)}}
-					options={workspaces}
-				></Dropdown>
+						<Dropdown
+							value={newBoardRelated}
+							onChange={(e: any) => {
+								setNewBoardRelated(e.target.value)
+							}}
+							options={workspaces}
+						/>
+					</div>
+					<div className="popup__footer">
+						<Button
+							className='btn btn--primary btn--xs'
+							onClick={pushNewBoard}
+							type='submit'
+						>
+							Создать
+						</Button>
+					</div>
+				</form>
 			</Popup>
 		</React.Fragment>
 	);

@@ -12,7 +12,7 @@ import {WorkspaceDetailsPage} from "../pages/WorkspaceDetailsPage";
 import {WorkspaceEdit} from "../shared/components/workspace-edit/WorkspaceEdit";
 import {WorkspaceNew} from "../shared/components/workspace-new/WorkspaceNew";
 import {Layout} from "../app/Layout";
-import BoardDetailsPage from "../pages/BoardDetailsPage";
+import {BoardDetailsPage} from "../pages/BoardDetailsPage";
 
 export const publicRoutes = [
 	{

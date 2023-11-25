@@ -1,6 +1,6 @@
-import {Task} from "../shared/components/board/typings";
+import {OneBoard, BoardProps} from "../shared/components/board/typings";
 
-export const BoardData: Task[] = [
+export const BoardData: OneBoard[] = [
 	{
 		id: 'd1',
 		title: 'Доска 1',

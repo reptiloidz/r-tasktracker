@@ -4,21 +4,26 @@ import {Button} from "../shared/ui/button/Button";
 import {BoardData} from "./typings";
 import {Board} from "../shared/components/board/Board";
 import {PageHeader} from "../shared/ui/page-header/PageHeader";
-import {useWorkspaces} from "../entities/hooks";
+import {useWorkspaces} from "../entities/useWorkspaces";
+import {useBoards} from "../entities/useBoards";
+// import {Board} from "../shared/components/one-board/typings";
+
+// GET /workspaces
+// GET /workspaces/{ id }
 
 const WorkspaceDetailsPage = () => {
 	const {id} = useParams();
 	const navigate = useNavigate();
-	const {workspaces} = useWorkspaces();
+	const [loadingWs, workspaces] = useWorkspaces();
+	const [loadingB, boards] = useBoards();
 
 	let workspaceDetailTitle: string = '';
 
 	workspaces.map((workspace) => {
-			if (workspace.id === id) {
-				workspaceDetailTitle = workspace.title;
-			}
+		if (workspace.id === id) {
+			workspaceDetailTitle = workspace.title;
 		}
-	);
+	});
 
 	const goBack = () => navigate(-1);
 
@@ -43,7 +48,8 @@ const WorkspaceDetailsPage = () => {
 			</PageHeader>
 
 			<Board
-				tasks={BoardData}
+				boards={boards}
+				isLoading={loadingB}
 			/>
 		</div>
 	);

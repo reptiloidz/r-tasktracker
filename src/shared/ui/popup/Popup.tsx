@@ -1,16 +1,20 @@
 import React from 'react';
 import {Button} from "../button/Button";
-import {PopupProps} from "./typings";
+import {PopipProps, PopupProps} from "./typings";
 
 const Popup = ({
 	title,
-	onSubmitText,
 	isOpen = false,
 	onSubmit,
 	children,
 	onCancel,
-	isDisabled = false,
 }: PopupProps) => {
+
+	const cancelHandler: PopupProps['onCancel'] = (e) => {
+		if (onCancel) {
+			onCancel(e);
+		}
+	}
 
 	return (
 		<React.Fragment>
@@ -23,33 +27,40 @@ const Popup = ({
 							</h2>
 							<Button
 								className='popup__btn btn btn--primary btn--xs'
-								onClick={onCancel}
+								onClick={cancelHandler}
 							>
 								Закрыть
 							</Button>
 						</div>
-
-						<form className="popup__content">
-							<div className="popup__body">
-								{children}
-							</div>
-
-							<div className="popup__footer">
-								<Button
-									className='btn btn--primary btn--xs'
-									onClick={onSubmit}
-									type='submit'
-									disabled={isDisabled}
-								>
-									{onSubmitText}
-								</Button>
-							</div>
-						</form>
+						{children}
 					</div>
 				</div>
 			}
 		</React.Fragment>
 	);
 };
+
+// деструктуризация, спреды
+export const Popip = ({
+	buttonProps,
+	title,
+	...props
+}: PopipProps) => {
+
+
+	console.log(props);
+
+	return <div />
+}
+
+const Component = () => {
+	const buttonProps = {
+		onCancel: () => {}
+	}
+
+	return (
+		<Popip buttonProps={ buttonProps } title='sdf' />
+	)
+}
 
 export {Popup};

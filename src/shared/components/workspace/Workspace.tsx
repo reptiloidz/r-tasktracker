@@ -2,7 +2,21 @@ import React from 'react';
 import {WorkspaceProps} from "./typings";
 import {Link} from "react-router-dom";
 
-const Workspace = ({workspaces}: WorkspaceProps) => {
+const Workspace = ({ workspaces, isLoading }: WorkspaceProps) => {
+	if (isLoading) {
+		return (
+			<div className='preloader' />
+		)
+	}
+
+	if (!workspaces.length) {
+		return (
+			<p>Не&nbsp;найдено рабочих пространств. Создайте новое, чтобы начать работу</p>
+		)
+	}
+
+	// if (isError)
+
 	const workspaceCollection = workspaces.map(
 		(workspace) =>
 			<li
@@ -31,20 +45,9 @@ const Workspace = ({workspaces}: WorkspaceProps) => {
 	);
 
 	return (
-		<React.Fragment>
-			{
-				workspaceCollection.length !== 0
-				? <ul className='workspaces'>
-					{workspaceCollection}
-				</ul>
-
-				: <div className='preloader'></div>
-				// todo preloader && not found
-				// <p>
-				// 	Не&nbsp;найдено рабочих пространств. Создайте новое, чтобы начать работу
-				// </p>
-			}
-		</React.Fragment>
+		<ul className='workspaces'>
+			{workspaceCollection}
+		</ul>
 	);
 };
 

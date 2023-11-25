@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {Workspace} from '../shared/components/workspace/Workspace';
 import {database} from '../entities/firebase';
 import {PageHeader} from "../shared/ui/page-header/PageHeader";
-import {useWorkspaces} from "../entities/hooks";
+import {useWorkspaces} from "../entities/useWorkspaces";
 
 const WorkspacePage = () => {
-	const {workspaces} = useWorkspaces();
+	const [loading, workspaces] = useWorkspaces();
 
 	return (
 		<React.Fragment>
@@ -15,6 +15,7 @@ const WorkspacePage = () => {
 
 			<Workspace
 				workspaces={workspaces}
+				isLoading={loading}
 			/>
 		</React.Fragment>
 	);

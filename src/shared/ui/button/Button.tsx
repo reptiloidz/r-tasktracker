@@ -13,7 +13,6 @@ const Button = ({
 		if (onClick) {
 			onClick(e);
 		}
-		console.log('btn');
 	}
 
 	// classnames

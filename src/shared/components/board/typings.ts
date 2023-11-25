@@ -1,11 +1,12 @@
 import {Workspace} from "../workspace/typings";
 
 export interface BoardProps {
-	tasks: Task[],
+	boards: OneBoard[],
+	isLoading: boolean;
 }
 
-export type Task = {
+export type OneBoard = {
 	id: string;
 	title: string;
-	relatedTo: Workspace['id'];
+	relatedTo?: Workspace['id'];
 }
