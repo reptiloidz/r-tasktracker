@@ -1,28 +1,31 @@
 import {useEffect, useState} from "react";
 import {database} from "./firebase";
+import {Workspace} from "../shared/components/workspace/typings";
 
+// use-workspace.ts
 
-export const useWorkspaces = () => {
-	const [workspaces, setWorkspaces] = useState<any[]>([]);
+export const useWorkspaces = (): [boolean, Workspace[]] => {
+	const [loading, setLoading] = useState<boolean>(true);
+	const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
 
 	useEffect(() => {
-		database.ref('/workspaces').on('value', snapshot => {
-			const workspacesData = snapshot.val();
+		database
+			.ref('/workspaces')
+			.on('value', (snapshot) => {
+				const workspacesData = snapshot.val();
 
-			const getWorkspaces = Object.keys(workspacesData).map((key) => {
-				return {
-					key,
-					id: key,
-					title: workspacesData[key].title,
-					description: workspacesData[key].description,
-				}
-			})
-			setWorkspaces(getWorkspaces);
-
-			//todo 2 раза вызывается
-			console.log(workspaces);
-		});
+				const workspaceList = Object.keys(workspacesData).map((key) => {
+					return {
+						key,
+						id: key,
+						title: workspacesData[key].title,
+						description: workspacesData[key].description,
+					}
+				})
+				setWorkspaces(workspaceList);
+				setLoading(false);
+			});
 	}, []);
 
-	return {workspaces};
+	return [loading, workspaces];
 };

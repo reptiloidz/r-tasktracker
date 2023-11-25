@@ -5,7 +5,7 @@ import {PageHeader} from "../shared/ui/page-header/PageHeader";
 import {useWorkspaces} from "../entities/hooks";
 
 const WorkspacePage = () => {
-	const {workspaces} = useWorkspaces();
+	const [loading, workspaces] = useWorkspaces();
 
 	return (
 		<React.Fragment>
@@ -15,6 +15,7 @@ const WorkspacePage = () => {
 
 			<Workspace
 				workspaces={workspaces}
+				isLoading={loading}
 			/>
 		</React.Fragment>
 	);

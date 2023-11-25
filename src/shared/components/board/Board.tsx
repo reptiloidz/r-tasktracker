@@ -35,11 +35,12 @@ const Board = ({tasks}: BoardProps) => {
 
 	console.log(newBoardRelated)
 
-	const {workspaces} = useWorkspaces();
+	const [loading, workspaces] = useWorkspaces();
 
 	// todo get board id
 	const boardId = 'q';
 
+	// tasks.filter()
 	const boardCollection = tasks.map(
 		(task: Task) =>
 			id === task.relatedTo.toString() ?
@@ -86,9 +87,6 @@ const Board = ({tasks}: BoardProps) => {
 				title='Новая доска'
 			>
 				<div className='field'>
-					{/*<div className="field__title">*/}
-					{/*	Название*/}
-					{/*</div>*/}
 					<input
 						className='field__control'
 						type='text' placeholder='Название'
@@ -99,9 +97,9 @@ const Board = ({tasks}: BoardProps) => {
 
 				<Dropdown
 					value={newBoardRelated}
-					onChange={(e: any) => {setNewBoardRelated(e.target.value)}}
+					onChange={(e: any) => { setNewBoardRelated(e.target.value) }}
 					options={workspaces}
-				></Dropdown>
+				/>
 			</Popup>
 		</React.Fragment>
 	);

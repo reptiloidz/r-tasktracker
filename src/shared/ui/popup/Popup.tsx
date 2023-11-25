@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button} from "../button/Button";
-import {PopupProps} from "./typings";
+import {PopipProps, PopupProps} from "./typings";
 
 const Popup = ({
 	title,
@@ -11,6 +11,13 @@ const Popup = ({
 	onCancel,
 	isDisabled = false,
 }: PopupProps) => {
+
+	const submitHandler = () => {
+		// ...
+		if (onSubmit) {
+
+		}
+	}
 
 	return (
 		<React.Fragment>
@@ -37,7 +44,7 @@ const Popup = ({
 							<div className="popup__footer">
 								<Button
 									className='btn btn--primary btn--xs'
-									onClick={onSubmit}
+									onClick={submitHandler}
 									type='submit'
 									disabled={isDisabled}
 								>
@@ -51,5 +58,28 @@ const Popup = ({
 		</React.Fragment>
 	);
 };
+
+// деструктуризация, спреды
+export const Popip = ({
+	buttonProps,
+	title,
+	...props
+}: PopipProps) => {
+
+
+	console.log(props);
+
+	return <div />
+}
+
+const Component = () => {
+	const buttonProps = {
+		onCancel: () => {}
+	}
+
+	return (
+		<Popip buttonProps={ buttonProps } title='sdf' />
+	)
+}
 
 export {Popup};
