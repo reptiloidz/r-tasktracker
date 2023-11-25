@@ -10,10 +10,12 @@ import {useWorkspaces} from "../../../entities/hooks";
 //  uuid
 const Board = ({tasks}: BoardProps) => {
 
+	const {id} = useParams();
+
 	const [isOpen, setIsOpen] = useState(false);
 	const [newBoardTitle, setNewBoardTitle] = useState('');
 	//todo use memo for select
-	const [newBoardRelated, setNewBoardRelated] = useState('');
+	const [newBoardRelated, setNewBoardRelated] = useState(id);
 
 	const createBoard = () => {
 		setIsOpen(!isOpen);
@@ -32,8 +34,6 @@ const Board = ({tasks}: BoardProps) => {
 	};
 
 	console.log(newBoardRelated)
-
-	const {id} = useParams();
 
 	const {workspaces} = useWorkspaces();
 

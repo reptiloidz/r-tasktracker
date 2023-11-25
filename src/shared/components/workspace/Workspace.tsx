@@ -1,5 +1,4 @@
 import React from 'react';
-import {Button} from "../../ui/button/Button";
 import {WorkspaceProps} from "./typings";
 import {Link} from "react-router-dom";
 
