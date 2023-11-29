@@ -32,8 +32,6 @@ const Board = ({boards, isLoading}: BoardProps) => {
 		}).catch(alert);
 	};
 
-	// console.log(newBoardRelated)
-
 	const [loading, workspaces] = useWorkspaces();
 
 	// todo get board id
