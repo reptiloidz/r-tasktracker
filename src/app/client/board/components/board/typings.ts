@@ -1,7 +1,7 @@
-import {Workspace} from "../workspace/typings";
+import {Workspace} from "../../../workspace/components/workspace/typings";
 
 export interface BoardProps {
-	boards: OneBoard[],
+	boards: OneBoard[];
 	isLoading: boolean;
 }
 

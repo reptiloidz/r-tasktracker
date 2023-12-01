@@ -1,11 +1,10 @@
 import React from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {Button} from "../shared/ui/button/Button";
-import {BoardData} from "./typings";
-import {Board} from "../shared/components/board/Board";
-import {PageHeader} from "../shared/ui/page-header/PageHeader";
-import {useWorkspaces} from "../entities/useWorkspaces";
-import {useBoards} from "../entities/useBoards";
+import {Button} from "../../../../../shared/ui/button/Button";
+import {Board} from "../../../board/components/board/Board";
+import {PageHeader} from "../../../../../shared/components/page-header/PageHeader";
+import {useWorkspaces} from "../../../../../shared/hooks/useWorkspaces";
+import {useBoards} from "../../../../../shared/hooks/useBoards";
 // import {Board} from "../shared/components/one-board/typings";
 
 // GET /workspaces

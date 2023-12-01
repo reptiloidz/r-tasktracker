@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {database} from "./firebase";
-import {Workspace} from "../shared/components/workspace/typings";
+import {database} from "../../app/firebase";
+import {Workspace} from "../../app/client/workspace/components/workspace/typings";
 
 // use-workspace.ts
 

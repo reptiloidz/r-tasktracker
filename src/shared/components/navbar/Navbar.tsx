@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavbarProps} from "./typings";
 import {NavLink} from "react-router-dom";
-import {Button} from "../button/Button";
+import {Button} from "../../ui/button/Button";
 
 const linkClasses: string = 'navbar__link';
 

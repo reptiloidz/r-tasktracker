@@ -39,4 +39,38 @@
 		justify-content: flex-end;
 		border-top: 2px solid var(--cl-gray);
 	}
+
+	&--right,
+	&--left {
+		background-color: transparent;
+		position: relative;
+
+		.popup__dialog {
+			position: absolute;
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+
+		.popup__header {
+			border-bottom: none;
+		}
+
+		.popup__footer {
+			border-top: none;
+		}
+	}
+
+	&--right {
+		.popup__dialog {
+			left: 0;
+			margin-left: 12px;
+		}
+	}
+
+	&--left {
+		.popup__dialog {
+			right: 0;
+			margin-right: 12px;
+		}
+	}
 }

@@ -35,6 +35,21 @@
 	}
 
 	&--secondary {
+		--btn-bg-cl: var(--btn-secondary-normal-bg-cl);
+		--btn-shadow: var(--btn-secondary-normal-shadow);
+		--btn-cl: var(--btn-secondary-normal-cl);
+
+		&:focus {
+			--btn-bg-cl: var(--btn-secondary-focus-bg-cl);
+			--btn-shadow: var(--btn-secondary-focus-shadow);
+			--btn-cl: var(--btn-secondary-focus-cl);
+		}
+
+		&:hover {
+			--btn-bg-cl: var(--btn-secondary-hover-bg-cl);
+			--btn-shadow: var(--btn-secondary-hover-shadow);
+			--btn-cl: var(--btn-secondary-hover-cl);
+		}
 	}
 
 	&--xs {

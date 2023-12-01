@@ -20,6 +20,19 @@
 --btn-primary-hover-cl: var(--cl-black);
 
 
+--btn-secondary-normal-bg-cl: var(--cl-green);
+--btn-secondary-normal-shadow: inset 0 0 0 2px var(--cl-black);
+--btn-secondary-normal-cl: var(--cl-black);
+
+--btn-secondary-focus-bg-cl: var(--cl-green);
+--btn-secondary-focus-shadow: inset 0 0 0 4px var(--cl-black);
+--btn-secondary-focus-cl: var(--cl-black);
+
+--btn-secondary-hover-bg-cl: var(--cl-dark-green);
+--btn-secondary-hover-shadow: inset 0 0 0 2px var(--cl-black), 0 4px var(--cl-black);
+--btn-secondary-hover-cl: var(--cl-black);
+
+
 --btn-disabled-bg-cl: var(--cl-white);
 --btn-disabled-shadow: inset 0 0 0 2px var(--cl-gray);
 --btn-disabled-cl: var(--cl-gray);

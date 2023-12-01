@@ -1,5 +1,5 @@
 export interface NavbarProps {
-	navs: NavLinks[],
+	navs: NavLinks[];
 }
 
 export type NavLinks = {

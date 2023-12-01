@@ -1,6 +1,6 @@
-import {OneBoard, BoardProps} from "../shared/components/board/typings";
+import {OneBoard, BoardProps} from "../../app/client/board/components/board/typings";
 import {useEffect, useState} from "react";
-import {database} from "./firebase";
+import {database} from "../../app/firebase";
 
 
 export const useBoards = (): [boolean, OneBoard[]] => {

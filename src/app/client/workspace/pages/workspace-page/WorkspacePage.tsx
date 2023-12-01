@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Workspace} from '../shared/components/workspace/Workspace';
-import {database} from '../entities/firebase';
-import {PageHeader} from "../shared/ui/page-header/PageHeader";
-import {useWorkspaces} from "../entities/useWorkspaces";
+import {database} from '../../../../firebase';
+import {PageHeader} from "../../../../../shared/components/page-header/PageHeader";
+import {useWorkspaces} from "../../../../../shared/hooks/useWorkspaces";
+import {Workspace} from "../../components/workspace/Workspace";
 
 const WorkspacePage = () => {
 	const [loading, workspaces] = useWorkspaces();

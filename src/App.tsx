@@ -2,9 +2,9 @@ import React from 'react';
 import './shared/styles/styles.scss';
 import {Navigate, Route, Routes} from 'react-router-dom';
 import {HomePage} from './pages/HomePage';
-import {Layout} from './app/Layout';
+import {Layout} from './pages/Layout';
 import {NotFoundPage} from './pages/NotFoundPage';
-import {publicRoutes} from './entities/routes';
+import {publicRoutes} from './app/routes';
 
 function App() {
 	return (
