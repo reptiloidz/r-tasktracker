@@ -2,7 +2,6 @@ import React, {useCallback, useState} from 'react';
 import {Button} from "../../../../../shared/ui/button/Button";
 import {Popup} from "../../../../../shared/components/popup/Popup";
 import {PopupForm} from "../../../../../shared/components/popup-form/PopupForm";
-import {PopupFormProps} from "../../../../../shared/components/popup-form/typings";
 import {database} from "../../../../firebase";
 
 const WorkspaceNew = () => {
@@ -10,8 +9,13 @@ const WorkspaceNew = () => {
 
 	const [newWorkspaceTitle, setNewWorkspaceTitle] = useState('');
 	const [newWorkspaceDescription, setNewWorkspaceDescription] = useState('');
-	const changeHandler: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-		setNewWorkspaceTitle(e.target.value)
+
+	const newWorkspaceTitleValue: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+		setNewWorkspaceTitle(e.target.value);
+	}
+
+	const newWorkspaceDescriptionValue: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+		setNewWorkspaceDescription(e.target.value);
 	}
 
 	const pushNewWorkspace = useCallback(() => {
@@ -55,7 +59,7 @@ const WorkspaceNew = () => {
 							type='text'
 							placeholder='Название'
 							value={newWorkspaceTitle}
-							onChange={changeHandler}
+							onChange={newWorkspaceTitleValue}
 						/>
 					</div>
 					<div className='field'>
@@ -67,7 +71,7 @@ const WorkspaceNew = () => {
 							type='text'
 							placeholder='Описание'
 							value={newWorkspaceDescription}
-							onChange={(e) => setNewWorkspaceDescription(e.target.value)}
+							onChange={newWorkspaceDescriptionValue}
 						/>
 					</div>
 				</PopupForm>

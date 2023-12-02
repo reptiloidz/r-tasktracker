@@ -1,14 +1,11 @@
 import React, {useState} from 'react';
-import {BoardProps, OneBoard} from "./typings";
+import {BoardProps} from "./typings";
 import {Button} from "../../../../../shared/ui/button/Button";
 import {Link, useParams} from "react-router-dom";
-import {Popup} from "../../../../../shared/components/popup/Popup";
 import {database} from "../../../../firebase";
-import {Dropdown} from "../../../../../shared/ui/dropdown/Dropdown";
 import {useWorkspaces} from "../../../../../shared/hooks/useWorkspaces";
 import {BoardNew} from "../../widgets/board-new/BoardNew";
 import {BoardNewProps} from "../../widgets/board-new/typings";
-import {useBoards} from "../../../../../shared/hooks/useBoards";
 
 //  uuid
 const Board = ({boards, isLoading}: BoardProps) => {
@@ -43,12 +40,9 @@ const Board = ({boards, isLoading}: BoardProps) => {
 		}).catch(alert);
 	};
 
-	const [loading, workspaces] = useWorkspaces();
+	const [, workspaces] = useWorkspaces();
 
 
-	// todo get board id
-
-	// boards.filter()
 	const boardCollection = boards.map(
 		(board) => {
 			if (id !== board.relatedTo?.toString()) return null;

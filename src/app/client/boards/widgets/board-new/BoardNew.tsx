@@ -53,7 +53,8 @@ const BoardNew = ({
 					<div className='field'>
 						<input
 							className='field__control'
-							type='text' placeholder='Название'
+							type='text'
+							placeholder='Название'
 							onChange={inputHandler}
 						/>
 					</div>

@@ -52,6 +52,24 @@
 		}
 	}
 
+	&--tertiary {
+		--btn-bg-cl: var(--btn-tertiary-normal-bg-cl);
+		--btn-shadow: var(--btn-tertiary-normal-shadow);
+		--btn-cl: var(--btn-tertiary-normal-cl);
+
+		&:focus {
+			--btn-bg-cl: var(--btn-tertiary-focus-bg-cl);
+			--btn-shadow: var(--btn-tertiary-focus-shadow);
+			--btn-cl: var(--btn-tertiary-focus-cl);
+		}
+
+		&:hover {
+			--btn-bg-cl: var(--btn-tertiary-hover-bg-cl);
+			--btn-shadow: var(--btn-tertiary-hover-shadow);
+			--btn-cl: var(--btn-tertiary-hover-cl);
+		}
+	}
+
 	&--xs {
 		height: 40px;
 		padding-right: 16px;
