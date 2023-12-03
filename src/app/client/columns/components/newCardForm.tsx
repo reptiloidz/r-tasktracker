@@ -4,11 +4,28 @@ import {Button} from "../../../../shared/ui/button/Button";
 type Props = {
     onAddCard: (title: string) => void;
 }
+
+const validateTitle = (title: string): string => {
+    if (title) {
+        const cleanTitle = title.trim();
+        if (cleanTitle.length === 0) {
+            return 'Введите название'
+        }
+
+        if (cleanTitle.length < 3) {
+            return 'Название должно быть не менее 3х символов'
+        }
+    }
+
+    return 'Введите название'
+}
+
 const NewCardForm = ({
     onAddCard
 }: Props) => {
     const [formVisible, setFormVisible] = useState(false);
     const [cardTitle, setCardTitle] = useState('');
+    const [error, setError] = useState<string>('');
 
     const openCardHandler = () => {
         setFormVisible(true);
@@ -24,7 +41,10 @@ const NewCardForm = ({
 
     const submitHandler: React.MouseEventHandler<HTMLButtonElement> = (e) => {
         e.preventDefault();
-        onAddCard(cardTitle);
+
+        const checkTitle = validateTitle(cardTitle);
+
+        return onAddCard(cardTitle);
     }
 
     return (
@@ -47,6 +67,7 @@ const NewCardForm = ({
                             placeholder='Введите заголовок для новой карточки'
                             onChange={ changeTitleHandler }
                         />
+                        { error && <span>{error}</span> }
                     </div>
                     <Button
                         className='btn btn--xs btn--primary'
