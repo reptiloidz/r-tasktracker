@@ -8,12 +8,28 @@ import {ColumnProps} from "./typings";
 const Column = ({isLoading, columns}: ColumnProps) => {
 	const {id} = useParams();
 	const [newColumnTitle, setNewColumnTitle] = useState('');
+	const [newCardTitle, setNewCardTitle] = useState('');
 
 	const pushNewColumn = () => {
 		database.ref('columns').push({
 			title: newColumnTitle,
 			relatedTo: id,
 		}).catch(alert);
+	};
+
+	const pushNewCard = (e: any) => {
+		setNewCard(true);
+
+		console.log()
+
+		// if (!e.target.value) return;
+
+		database.ref('cards').push({
+			title: newCardTitle,
+			relatedTo: e.target.parentElement.id, // todo
+		}).catch(alert);
+
+		e.target.value = ''
 	};
 
 	const [newColumn, setNewColumn] = useState(false);
@@ -27,17 +43,21 @@ const Column = ({isLoading, columns}: ColumnProps) => {
 		setNewColumn(false);
 	};
 
-	const addNewCard = () => {
-		setNewCard(true);
-	};
-
 	const cancelAddNewCard = () => {
 		setNewCard(false);
 	};
 
 	const newColumnTitleValue: React.ChangeEventHandler<HTMLInputElement> = (e) => {
 		setNewColumnTitle(e.target.value);
-	}
+	};
+
+	const newCardTitleValue: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+		setNewCardTitle(e.target.value);
+	};
+
+	const formSubmit = () => {
+		console.log(this)
+	};
 
 	const columnCollection = columns
 		.filter(column => id === column.relatedTo?.toString())
@@ -56,19 +76,26 @@ const Column = ({isLoading, columns}: ColumnProps) => {
 						{column.title}
 					</h2>
 
-					<form>
+					<Button
+						className='btn btn--xs btn--tertiary'
+					>
+						test
+					</Button>
+
+					<form id={column.id} onSubmit={formSubmit}>
 						{newCard &&
 							<div className=''>
 									<textarea
 										className=''
 										placeholder='Введите заголовок для новой карточки'
+										onChange={newCardTitleValue}
 									/>
 							</div>
 						}
 
 						<Button
 							className='btn btn--xs btn--primary'
-							onClick={addNewCard}
+							onClick={pushNewCard}
 						>
 							+ Добавить карточку
 						</Button>
@@ -93,12 +120,10 @@ const Column = ({isLoading, columns}: ColumnProps) => {
 		)
 	}
 
-	console.log(columnCollection)
-
 	return (
 		<div className="row md:row-cols-2">
 
-			{columnCollection &&
+			{columnCollection.length !== 0 &&
 				<ol className="row md:row-cols-3">
 					{columnCollection}
 				</ol>
