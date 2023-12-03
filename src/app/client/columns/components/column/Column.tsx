@@ -3,6 +3,7 @@ import {database} from "../../../../firebase";
 import {Link, useParams} from "react-router-dom";
 import {Button} from "../../../../../shared/ui/button/Button";
 import {useColumns} from "../../../../../shared/hooks/useColumns";
+import { ColumnComponent } from '../../ColumnComponent';
 import {ColumnProps} from "./typings";
 
 const Column = ({isLoading, columns}: ColumnProps) => {
@@ -43,20 +44,8 @@ const Column = ({isLoading, columns}: ColumnProps) => {
 		setNewColumn(false);
 	};
 
-	const cancelAddNewCard = () => {
-		setNewCard(false);
-	};
-
 	const newColumnTitleValue: React.ChangeEventHandler<HTMLInputElement> = (e) => {
 		setNewColumnTitle(e.target.value);
-	};
-
-	const newCardTitleValue: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-		setNewCardTitle(e.target.value);
-	};
-
-	const formSubmit = () => {
-		console.log(this)
 	};
 
 	const columnCollection = columns
@@ -67,50 +56,7 @@ const Column = ({isLoading, columns}: ColumnProps) => {
 				/* key пишем у обертки итерируемого эл-та,
 				* иначе ошибка child in a list should have a unique "key" prop. */
 			>
-				<div
-					className='widget widget--primary'
-				>
-					<h2
-						className='widget__title'
-					>
-						{column.title}
-					</h2>
-
-					<Button
-						className='btn btn--xs btn--tertiary'
-					>
-						test
-					</Button>
-
-					<form id={column.id} onSubmit={formSubmit}>
-						{newCard &&
-							<div className=''>
-									<textarea
-										className=''
-										placeholder='Введите заголовок для новой карточки'
-										onChange={newCardTitleValue}
-									/>
-							</div>
-						}
-
-						<Button
-							className='btn btn--xs btn--primary'
-							onClick={pushNewCard}
-						>
-							+ Добавить карточку
-						</Button>
-
-						{newCard &&
-							<Button
-								className='btn btn--xs btn--primary'
-								onClick={cancelAddNewCard}
-							>
-								X
-							</Button>
-						}
-					</form>
-
-				</div>
+				<ColumnComponent column={ column } />
 			</li>
 		));
 
