@@ -1,9 +1,9 @@
 import React, {useRef, useState} from 'react';
-import {Button} from "../../../../../shared/ui/button/Button";
-import {Dropdown} from "../../../../../shared/ui/dropdown/Dropdown";
+import {Button} from "../../../../shared/ui/button/Button";
+import {Dropdown} from "../../../../shared/ui/dropdown/Dropdown";
 import {BoardNewProps} from "./typings";
-import {Popup} from "../../../../../shared/components/popup/Popup";
-import {PopupProps} from "../../../../../shared/components/popup/typings";
+import {Popup} from "../../../../shared/components/popup/Popup";
+import {PopupProps} from "../../../../shared/components/popup/typings";
 
 const BoardNew = ({
 	onCancel,

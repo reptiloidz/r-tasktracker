@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from 'react';
-import {Button} from "../../../../../shared/ui/button/Button";
-import {Popup} from "../../../../../shared/components/popup/Popup";
-import {PopupForm} from "../../../../../shared/components/popup-form/PopupForm";
-import {database} from "../../../../firebase";
+import {Button} from "../../../../shared/ui/button/Button";
+import {Popup} from "../../../../shared/components/popup/Popup";
+import {PopupForm} from "../../../../shared/components/popup-form/PopupForm";
+import {database} from "../../../../app/firebase";
 
 const WorkspaceNew = () => {
 	const [isOpen, setIsOpen] = useState(false);

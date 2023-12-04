@@ -1,4 +1,4 @@
-import {Board} from "../../app/client/boards/components/board/typings";
+import {Board} from "../../entities/boards/components/board/typings";
 import {useEffect, useState} from "react";
 import {database} from "../../app/firebase";
 

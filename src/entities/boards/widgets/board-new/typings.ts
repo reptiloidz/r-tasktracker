@@ -1,5 +1,5 @@
 import React, {ChangeEventHandler} from "react";
-import {PopupProps} from "../../../../../shared/components/popup/typings";
+import {PopupProps} from "../../../../shared/components/popup/typings";
 
 export interface BoardNewProps {
 	isOpen?: PopupProps['isOpen'];

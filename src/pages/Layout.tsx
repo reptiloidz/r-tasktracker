@@ -2,7 +2,7 @@ import React from 'react';
 import {NavsData} from '../typings';
 import {Navbar} from '../shared/components/navbar/Navbar';
 import {Outlet} from 'react-router-dom';
-import {WorkspaceNew} from "../app/client/workspaces/widgets/workspace-new/WorkspaceNew";
+import {WorkspaceNew} from "../entities/workspaces/widgets/workspace-new/WorkspaceNew";
 
 const Layout = () => {
 	return (

@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {BoardProps} from "./typings";
-import {Button} from "../../../../../shared/ui/button/Button";
+import {Button} from "../../../../shared/ui/button/Button";
 import {Link, useParams} from "react-router-dom";
-import {database} from "../../../../firebase";
-import {useWorkspaces} from "../../../../../shared/hooks/useWorkspaces";
+import {database} from "../../../../app/firebase";
+import {useWorkspaces} from "../../../../shared/hooks/useWorkspaces";
 import {BoardNew} from "../../widgets/board-new/BoardNew";
 import {BoardNewProps} from "../../widgets/board-new/typings";
 
@@ -42,7 +42,6 @@ const Board = ({boards, isLoading}: BoardProps) => {
 
 	const [, workspaces] = useWorkspaces();
 
-
 	const boardCollection = boards.map(
 		(board) => {
 			if (id !== board.relatedTo?.toString()) return null;
@@ -65,6 +64,12 @@ const Board = ({boards, isLoading}: BoardProps) => {
 			);
 		}
 	);
+
+	if (isLoading) {
+		return (
+			<div className='preloader'/>
+		)
+	}
 
 	return (
 		<React.Fragment>

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {database} from "../../../../firebase";
+import {database} from "../../../../app/firebase";
 import {Link, useParams} from "react-router-dom";
-import {Button} from "../../../../../shared/ui/button/Button";
-import {useColumns} from "../../../../../shared/hooks/useColumns";
+import {Button} from "../../../../shared/ui/button/Button";
+import {useColumns} from "../../../../shared/hooks/useColumns";
 import { ColumnComponent } from '../../ColumnComponent';
 import {ColumnProps} from "./typings";
 

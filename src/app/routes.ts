@@ -6,11 +6,11 @@ import {
 	WORKSPACE_EDIT_ROUTE,
 	WORKSPACES_ROUTE
 } from "./routeVariables";
-import {BoardDetailsPage} from "./client/boards/pages/board-details-page/BoardDetailsPage";
-import {WorkspacePage} from "./client/workspaces/pages/workspace-page/WorkspacePage";
-import {WorkspaceDetailsPage} from "./client/workspaces/pages/workspace-details-page/WorkspaceDetailsPage";
+import {BoardDetailsPage} from "./client/board-details-page/BoardDetailsPage";
+import {WorkspacePage} from "./client/workspace-page/WorkspacePage";
+import {WorkspaceDetailsPage} from "../entities/workspaces/pages/workspace-details-page/WorkspaceDetailsPage";
 import {Layout} from "../pages/Layout";
-import {WorkspaceEdit} from "./client/workspaces/pages/workspace-edit/WorkspaceEdit";
+import {WorkspaceEdit} from "../entities/workspaces/pages/workspace-edit/WorkspaceEdit";
 
 export const publicRoutes = [
 	{

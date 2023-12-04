@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {Button} from "../../../shared/ui/button/Button";
+import {Button} from "../../shared/ui/button/Button";
 import {Board} from "../boards/components/board/typings";
 import {Card} from "../cards/Card";
 import { NewCardForm } from "./components/newCardForm";
-import {database} from "../../firebase";
+import {database} from "../../app/firebase";
 
 type Props = {
     column: {
