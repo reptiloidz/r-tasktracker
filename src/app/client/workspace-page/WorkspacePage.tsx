@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {database} from '../../firebase';
+import React from 'react';
 import {PageHeader} from "../../../shared/components/page-header/PageHeader";
 import {useWorkspaces} from "../../../shared/hooks/useWorkspaces";
-import {Workspace} from "../../../entities/workspaces/components/workspace/Workspace";
+import {WorkspaceCollection} from "../../../entities/workspaces/components/workspace-collection/WorkspaceCollection";
 
 const WorkspacePage = () => {
-	const [loading, workspaces] = useWorkspaces();
+	const [loadingWorkspaces, workspaces] = useWorkspaces();
 
 	return (
 		<React.Fragment>
@@ -13,9 +12,9 @@ const WorkspacePage = () => {
 				title='Рабочие пространства'
 			/>
 
-			<Workspace
+			<WorkspaceCollection
 				workspaces={workspaces}
-				isLoading={loading}
+				isLoading={loadingWorkspaces}
 			/>
 		</React.Fragment>
 	);

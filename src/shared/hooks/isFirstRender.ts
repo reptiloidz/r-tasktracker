@@ -1,9 +1,9 @@
 import React from 'react';
 
 const useFirstRender = (): boolean => {
-    // реализовать хук, срабатывающий только при первом рендере
+	// реализовать хук, срабатывающий только при первом рендере
 
-    return true;
+	return true;
 }
 
-export { useFirstRender }
+export {useFirstRender}

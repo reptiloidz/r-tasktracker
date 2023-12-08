@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button} from "../../../shared/ui/button/Button";
+import {Button} from "../../../../shared/ui/button/Button";
 
 type Props = {
 	onAddCard: (title: string) => void;
@@ -7,22 +7,26 @@ type Props = {
 
 const validateTitle = (title: string): string => {
 	if (title) {
+		console.log('validateTitle', title)
 		const cleanTitle = title.trim();
 		if (cleanTitle.length === 0) {
-			return 'Введите название'
+			console.log('validateTitle', 'Введите название')
+			return 'Введите название';
 		}
 
 		if (cleanTitle.length < 3) {
-			return 'Название должно быть не менее 3х символов'
+			console.log('validateTitle', 'Название должно быть не менее 3х символов')
+			return 'Название должно быть не менее 3х символов';
 		}
 	}
 
-	return 'Введите название'
+	console.log('validateTitle', 'Введите название')
+	return 'Введите название';
 }
 
-const NewCardForm = ({
-						 onAddCard
-					 }: Props) => {
+const CardNew = ({
+	onAddCard
+}: Props) => {
 	const [formVisible, setFormVisible] = useState(false);
 	const [cardTitle, setCardTitle] = useState('');
 	const [error, setError] = useState<string>('');
@@ -47,16 +51,36 @@ const NewCardForm = ({
 		return onAddCard(cardTitle);
 	}
 
+	const testFunc: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+		e.preventDefault();
+
+		const checkTitle = validateTitle(cardTitle);
+
+		console.log(cardTitle)
+	}
+
 	return (
 		<React.Fragment>
 			{!formVisible && (
 				<Button
-					className='btn btn--xs btn--primary'
+					className='columns__item-btn btn btn--xs btn--primary'
 					onClick={openCardHandler}
 				>
 					+ Добавить карточку
 				</Button>
 			)}
+			{/*<textarea*/}
+			{/*	value={cardTitle}*/}
+			{/*	placeholder='Введите заголовок для новой карточки'*/}
+			{/*	onChange={changeTitleHandler}*/}
+			{/*/>*/}
+
+			{/*<Button*/}
+			{/*	className='btn btn--xs btn--secondary'*/}
+			{/*	onClick={testFunc}*/}
+			{/*>*/}
+			{/*	test*/}
+			{/*</Button>*/}
 
 			{formVisible && (
 				<form>
@@ -87,4 +111,4 @@ const NewCardForm = ({
 	);
 };
 
-export {NewCardForm};
+export {CardNew};

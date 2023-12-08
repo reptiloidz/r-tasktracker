@@ -5,6 +5,7 @@ const PageHeader = ({
 	title,
 	children,
 }: PageHeaderProps) => {
+
 	return (
 		<React.Fragment>
 			<div className="header">

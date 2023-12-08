@@ -1,15 +1,6 @@
-import React, {
-	JSXElementConstructor,
-	ReactElement,
-	ReactEventHandler,
-	ReactNode,
-	ReactPortal,
-	useEffect,
-	useRef
-} from 'react';
+import React from 'react';
 import {Button} from "../../ui/button/Button";
 import {PopupProps} from "./typings";
-import {type} from "os";
 
 const Popup = ({
 	title,

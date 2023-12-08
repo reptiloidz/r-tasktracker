@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {Button} from "../../../../shared/ui/button/Button";
 import {PageHeader} from "../../../../shared/components/page-header/PageHeader";
 

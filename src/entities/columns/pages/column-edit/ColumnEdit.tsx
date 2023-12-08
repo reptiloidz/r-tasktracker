@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ColumnNew = () => {
+const ColumnEdit = () => {
 	return (
 		<div>
 
@@ -8,4 +8,4 @@ const ColumnNew = () => {
 	);
 };
 
-export {ColumnNew};
+export {ColumnEdit};

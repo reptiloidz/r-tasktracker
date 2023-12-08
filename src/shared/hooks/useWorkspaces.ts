@@ -1,8 +1,6 @@
 import {useEffect, useState} from "react";
 import {database} from "../../app/firebase";
-import {Workspace} from "../../entities/workspaces/components/workspace/typings";
-
-// use-workspace.ts
+import {Workspace} from "../../entities/workspaces/components/workspace-collection/typings";
 
 export const useWorkspaces = (): [boolean, Workspace[]] => {
 	const [loading, setLoading] = useState<boolean>(true);

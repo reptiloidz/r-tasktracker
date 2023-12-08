@@ -1,82 +1,62 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {Button} from "../../../../shared/ui/button/Button";
-import {Dropdown} from "../../../../shared/ui/dropdown/Dropdown";
+import {BoardForm} from "../board-form/BoardForm";
+import {database} from "../../../../app/firebase";
 import {BoardNewProps} from "./typings";
-import {Popup} from "../../../../shared/components/popup/Popup";
-import {PopupProps} from "../../../../shared/components/popup/typings";
 
-const BoardNew = ({
-	onCancel,
-	dropdownValue,
-	onDropdownChange,
-	dropdownOptions,
-	onInputChange,
-	onSubmit,
-	isOpen,
-}: BoardNewProps) => {
+const BoardNew = ({workspaces, idWorkspace}: BoardNewProps) => {
+	const [newBoardTitle, setNewBoardTitle] = useState('');
+	const [isOpen, setIsOpen] = useState(false);
+	const [newBoardRelated, setNewBoardRelated] = useState(idWorkspace);
 
-	const closeHandler: PopupProps['onCancel'] = (e) => {
-		if (onCancel) {
-			onCancel(e);
-		}
+	const createBoard = () => {
+		setIsOpen(true);
+	};
+
+	const closePopup = () => {
+		setIsOpen(false);
+	};
+
+	const newBoardWorkspace: BoardNewProps['onDropdownChange'] = (e) => {
+		setNewBoardRelated(e.target.value);
 	}
 
-	const submitHandler: BoardNewProps['onSubmit'] = (e) => {
-		if (onSubmit) {
-			onSubmit(e);
-		}
+	const newBoardHeading: BoardNewProps['onInputChange'] = (e) => {
+		setNewBoardTitle(e.target.value);
 	}
 
-	const dropdownHandler: BoardNewProps['onDropdownChange'] = (e) => {
-		if (onDropdownChange) {
-			onDropdownChange(e);
-		}
-	}
 
-	const inputHandler: BoardNewProps['onInputChange'] = (e) => {
-		if (onInputChange) {
-			onInputChange(e);
-		}
-	}
+	const pushNewBoard = (e: any) => {
+		e.preventDefault();
+		//todo
 
-	if (!isOpen) return null;
+		database.ref('boards').push({
+			title: newBoardTitle,
+			relatedTo: newBoardRelated,
+		}).catch(alert);
+
+		closePopup();
+	};
 
 	return (
-		<React.Fragment>
-			<Popup
-				isOpen={isOpen}
-				onCancel={closeHandler}
-				title='Создать доску'
-				rootClass='popup--left'
+		<div style={{display: 'flex'}}>
+			<Button
+				className='btn btn--primary btn--xs'
+				onClick={createBoard}
 			>
-				<div className="popup__body">
-					<div className='field'>
-						<input
-							className='field__control'
-							type='text'
-							placeholder='Название'
-							onChange={inputHandler}
-						/>
-					</div>
+				Создать доску
+			</Button>
 
-					<Dropdown
-						value={dropdownValue}
-						onChange={dropdownHandler}
-						options={dropdownOptions}
-					/>
-				</div>
-
-				<div className="popup__footer">
-					<Button
-						className='btn btn--primary btn--xs'
-						onClick={submitHandler}
-						type='submit'
-					>
-						Создать
-					</Button>
-				</div>
-			</Popup>
-		</React.Fragment>
+			<BoardForm
+				isOpen={isOpen}
+				onCancel={closePopup}
+				dropdownValue={newBoardRelated}
+				dropdownOptions={workspaces}
+				onDropdownChange={newBoardWorkspace}
+				onSubmit={pushNewBoard}
+				onInputChange={newBoardHeading}
+			/>
+		</div>
 	);
 };
 

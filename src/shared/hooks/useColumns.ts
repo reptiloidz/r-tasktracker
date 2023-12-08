@@ -1,4 +1,4 @@
-import {Column} from "../../entities/columns/components/column/typings";
+import {Column} from "../../entities/columns/pages/column-collection/typings";
 import {useEffect, useState} from "react";
 import {database} from "../../app/firebase";
 

@@ -1,12 +1,12 @@
-import {Board} from "../../../boards/components/board/typings";
+import {Board} from "../../../boards/components/board-collection/typings";
 
 export interface ColumnProps {
-	columns: Column[];
+	column: Column[];
 	isLoading: boolean;
 }
 
 export type Column = {
-	id: string;
+	id?: string;
 	title: string;
 	relatedTo?: Board['id'];
 }

@@ -20,7 +20,7 @@ const Layout = () => {
 					</div>
 				</div>
 
-				<div className='md:col-8 container'>
+				<div className='md:col-8'>
 					<div style={{overflowX: 'auto', height: '100%'}}>
 						<Outlet/>
 					</div>

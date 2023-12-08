@@ -2,7 +2,7 @@ import React from 'react';
 import {WorkspaceProps} from "./typings";
 import {Link} from "react-router-dom";
 
-const Workspace = ({ workspaces, isLoading }: WorkspaceProps) => {
+const WorkspaceCollection = ({ workspaces, isLoading }: WorkspaceProps) => {
 	if (isLoading) {
 		return (
 			<div className='preloader' />
@@ -51,4 +51,4 @@ const Workspace = ({ workspaces, isLoading }: WorkspaceProps) => {
 	);
 };
 
-export {Workspace};
+export {WorkspaceCollection};

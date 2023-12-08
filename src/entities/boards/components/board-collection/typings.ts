@@ -1,4 +1,4 @@
-import {Workspace} from "../../../workspaces/components/workspace/typings";
+import {Workspace} from "../../../workspaces/components/workspace-collection/typings";
 
 export interface BoardProps {
 	boards: Board[];
@@ -6,7 +6,7 @@ export interface BoardProps {
 }
 
 export type Board = {
-	id: string;
+	id?: string;
 	title: string;
 	relatedTo?: Workspace['id'];
 }
