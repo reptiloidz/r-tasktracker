@@ -20,10 +20,13 @@ const WorkspaceDetails = () => {
 
 	const goBack = () => navigate(-1);
 
+	const workspaceDetailsTitle = workspaceDetails.title ? workspaceDetails.title : '';
+
+
 	return (
 		<div>
 			<PageHeader
-				title={`Рабочее пространство ${workspaceDetails.title}`}
+				title={`Рабочее пространство ${workspaceDetailsTitle}`}
 			>
 				<Link
 					className='header__btn btn btn--primary btn--xs'

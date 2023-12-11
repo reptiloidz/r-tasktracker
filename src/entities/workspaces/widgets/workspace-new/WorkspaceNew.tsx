@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import {Button} from "../../../../shared/ui/button/Button";
 import {Popup} from "../../../../shared/components/popup/Popup";
 import {PopupForm} from "../../../../shared/components/popup-form/PopupForm";
@@ -17,20 +17,25 @@ const WorkspaceNew = () => {
 	const newWorkspaceDescriptionValue: React.ChangeEventHandler<HTMLInputElement> = (e) => {
 		setNewWorkspaceDescription(e.target.value);
 	}
-
-	const pushNewWorkspace = useCallback(() => {
-		database.ref('workspaces').push({
-			title: newWorkspaceTitle,
-			description: newWorkspaceDescription,
-		}).catch(alert);
-	}, [newWorkspaceDescription, newWorkspaceTitle]);
-
 	const createWorkspace = () => {
 		setIsOpen(!isOpen);
 	};
 
 	const closeModal = () => {
 		setIsOpen(false);
+	};
+
+	const pushNewWorkspace: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+		e.preventDefault();
+
+		database.ref('workspaces').push({
+			title: newWorkspaceTitle,
+			description: newWorkspaceDescription,
+		}).catch(alert);
+
+		setNewWorkspaceTitle('');
+		setNewWorkspaceDescription('');
+		closeModal();
 	};
 
 	return (

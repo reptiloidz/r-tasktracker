@@ -11,9 +11,10 @@ type Props = {
 		title: string;
 		relatedTo?: Board['id'];
 	};
+	isLoading: boolean;
 }
 
-const Column = ({column}: Props) => {
+const Column = ({isLoading, column}: Props) => {
 	const [loading, cards] = useCards();
 	const formSubmit = async (title: string) => {
 		await database.ref('cards').push({
@@ -22,11 +23,11 @@ const Column = ({column}: Props) => {
 		}).catch(alert);
 	};
 
-	// if (isLoading) {
-	// 	return (
-	// 		<div className='preloader'/>
-	// 	)
-	// }
+	if (isLoading) {
+		return (
+			<div className='preloader'/>
+		)
+	}
 
 	return (
 		<div className='widget widget--primary'>

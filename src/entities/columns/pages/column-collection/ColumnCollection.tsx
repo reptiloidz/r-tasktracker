@@ -11,12 +11,15 @@ const ColumnCollection = ({isLoading, columns}: ColumnCollectionProps) => {
 	const [newColumnTitle, setNewColumnTitle] = useState('');
 	const [newColumn, setNewColumn] = useState(false);
 
-	const pushNewColumn = () => {
+	const pushNewColumn: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+		e.preventDefault();
+
 		database.ref('columns').push({
 			title: newColumnTitle,
 			relatedTo: id,
 		}).catch(alert);
 
+		setNewColumn(false);
 	};
 
 	const addNewColumn = () => {
@@ -39,7 +42,7 @@ const ColumnCollection = ({isLoading, columns}: ColumnCollectionProps) => {
 				/* key пишем у обертки итерируемого эл-та,
 				* иначе ошибка child in a list should have a unique "key" prop. */
 			>
-				<Column column={ column } />
+				<Column column={ column } isLoading={false} />
 			</li>
 		));
 

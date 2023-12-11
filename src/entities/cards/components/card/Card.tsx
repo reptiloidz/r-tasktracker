@@ -1,16 +1,22 @@
 import React from 'react';
-import {Button} from "../../../../shared/ui/button/Button";
 
 type Props = {
 	title?: string
 }
 
-export const Card = ({
+const Card = ({
 	title
 }: Props) => {
 	return (
-		<Button className='columns__item-btn btn btn--xs btn--tertiary'>
-			{title || 'Безымянная карточка'}
-		</Button>
+		<div className='columns__item-widget widget widget--primary widget--interactive'>
+			<div>
+				<span className='widget__title'>
+					{title}
+				</span>
+			</div>
+		</div>
 	)
 }
+
+
+export {Card};

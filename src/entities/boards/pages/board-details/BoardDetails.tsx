@@ -19,14 +19,17 @@ const BoardDetails = () => {
 	React.useEffect(() => {
 		if (isFirstRender) {
 			// что-то при первом рендере
+			console.log('first render');
 		}
 	}, [isFirstRender]);
 
 
+	const boardSelectedTitle = boardSelected.title ? boardSelected.title : '';
+
 	return (
 		<React.Fragment>
 			<PageHeader
-				title={`Доска ${boardSelected.title}`}
+				title={`Доска ${boardSelectedTitle}`}
 			>
 				<Link
 					className='header__btn btn btn--primary btn--xs'

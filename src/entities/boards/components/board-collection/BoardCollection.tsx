@@ -18,7 +18,7 @@ const BoardCollection = ({boards, isLoading}: BoardProps) => {
 					* иначе ошибка child in a list should have a unique "key" prop. */
 				>
 					<Link
-						className='desk'
+						className='widget widget--primary widget--interactive'
 						to={`/board/${board.id}`}
 					>
 						<h3>

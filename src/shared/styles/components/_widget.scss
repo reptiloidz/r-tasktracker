@@ -28,12 +28,13 @@
 	}
 
 	&--secondary {
-		--card-box-shadow: var(--card-secondary-box-shadow);
+		//--card-box-shadow: var(--card-secondary-box-shadow);
 	}
 
 	&--interactive {
 		text-decoration: none;
 		transition: box-shadow .2s ease;
+		cursor: pointer;
 
 		&:focus {
 			outline: none;
@@ -54,8 +55,6 @@
 			background-size: 0 86%;
 			background-repeat: no-repeat;
 			transition: background-size .4s ease;
-
-
 		}
 
 	}

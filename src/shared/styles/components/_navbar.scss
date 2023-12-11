@@ -23,10 +23,9 @@
 
 	&__link {
 		padding: 8px 4px;
-		background-color: var(--navbar-link-bg-cl);
+		//background-color: var(--navbar-link-bg-cl);
 		color: var(--navbar-link-cl);
 		text-decoration: none;
-		display: inline-block;
 		background-image: linear-gradient(180deg, transparent 65%, var(--cl-green) 0);
 		background-size: 0 86%;
 		background-repeat: no-repeat;

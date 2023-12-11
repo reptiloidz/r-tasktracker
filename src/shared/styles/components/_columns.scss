@@ -3,10 +3,12 @@
 	grid-auto-flow: column;
 	column-gap: 12px;
 
-	&__item-btn {
+	&__item-btn,
+	&__item-widget {
 		width: 100%;
 
-		+ .columns__item-btn {
+		+ .columns__item-btn,
+		+ .columns__item-widget {
 			margin-top: 8px;
 		}
 	}

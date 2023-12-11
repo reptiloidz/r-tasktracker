@@ -1,62 +1,47 @@
 import React, {useState} from 'react';
 import {Button} from "../../../../shared/ui/button/Button";
-
-type Props = {
-	onAddCard: (title: string) => void;
-}
-
-const validateTitle = (title: string): string => {
-	if (title) {
-		console.log('validateTitle', title)
-		const cleanTitle = title.trim();
-		if (cleanTitle.length === 0) {
-			console.log('validateTitle', 'Введите название')
-			return 'Введите название';
-		}
-
-		if (cleanTitle.length < 3) {
-			console.log('validateTitle', 'Название должно быть не менее 3х символов')
-			return 'Название должно быть не менее 3х символов';
-		}
-	}
-
-	console.log('validateTitle', 'Введите название')
-	return 'Введите название';
-}
+import {useValidationInput} from "../../../../shared/hooks/useValidationInput";
+import {CardNewProps} from "./typings";
 
 const CardNew = ({
 	onAddCard
-}: Props) => {
+}: CardNewProps) => {
 	const [formVisible, setFormVisible] = useState(false);
 	const [cardTitle, setCardTitle] = useState('');
-	const [error, setError] = useState<string>('');
+	const cardTitleValidate = useValidationInput('', {isEmpty: true, minLength: 3});
+
+	const addCardHandler: CardNewProps['onAddCard'] = (e) => {
+		if (onAddCard) {
+			onAddCard(e);
+		}
+	}
 
 	const openCardHandler = () => {
 		setFormVisible(true);
 	}
 
 	const cancelHandler = () => {
+		setCardTitle('');
 		setFormVisible(false);
 	}
 
-	const changeTitleHandler: React.ChangeEventHandler<HTMLTextAreaElement> = (event) => {
-		setCardTitle(event.target.value);
+	const changeTitleHandler: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+		setCardTitle(e.target.value);
+		// console.log(cardTitle)
+
+		cardTitleValidate.onChange(e);
 	}
+
+	// const blurTitleHandler = (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+	// 	cardTitleValidate.onBlur(e);
+	// };
 
 	const submitHandler: React.MouseEventHandler<HTMLButtonElement> = (e) => {
 		e.preventDefault();
 
-		const checkTitle = validateTitle(cardTitle);
-
-		return onAddCard(cardTitle);
-	}
-
-	const testFunc: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-		e.preventDefault();
-
-		const checkTitle = validateTitle(cardTitle);
-
-		console.log(cardTitle)
+		setCardTitle(''); //todo not w
+		setFormVisible(false);
+		addCardHandler(cardTitle);
 	}
 
 	return (
@@ -69,33 +54,34 @@ const CardNew = ({
 					+ Добавить карточку
 				</Button>
 			)}
-			{/*<textarea*/}
-			{/*	value={cardTitle}*/}
-			{/*	placeholder='Введите заголовок для новой карточки'*/}
-			{/*	onChange={changeTitleHandler}*/}
-			{/*/>*/}
-
-			{/*<Button*/}
-			{/*	className='btn btn--xs btn--secondary'*/}
-			{/*	onClick={testFunc}*/}
-			{/*>*/}
-			{/*	test*/}
-			{/*</Button>*/}
 
 			{formVisible && (
 				<form>
 					<div className=''>
 						<textarea
 							className=''
-							value={cardTitle}
+							name='cardTitle'
+							value={cardTitleValidate.value}
 							placeholder='Введите заголовок для новой карточки'
 							onChange={changeTitleHandler}
+							// onBlur={blurTitleHandler}
 						/>
-						{error && <span>{error}</span>}
+
+						{
+							(cardTitleValidate.isDirty && cardTitleValidate.isEmpty) &&
+							<p>Поле не может быть пустым</p>
+						}
+						{
+							(cardTitleValidate.isDirty && cardTitleValidate.minLengthError) &&
+							<p>Минимальная длина не менее 3х</p>
+						}
+
+
 					</div>
 					<Button
 						className='btn btn--xs btn--secondary'
 						onClick={submitHandler}
+						disabled={!cardTitleValidate.inputValid}
 					>
 						+ Добавить карточку
 					</Button>
