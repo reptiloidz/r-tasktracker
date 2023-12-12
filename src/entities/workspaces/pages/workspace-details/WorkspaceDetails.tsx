@@ -20,6 +20,10 @@ const WorkspaceDetails = () => {
 
 	const goBack = () => navigate(-1);
 
+	if (!workspaceDetails) {
+		// если null
+	}
+
 	const workspaceDetailsTitle = workspaceDetails.title ? workspaceDetails.title : '';
 
 
@@ -58,4 +62,4 @@ const WorkspaceDetails = () => {
 	);
 };
 
-export {WorkspaceDetails};
+export { WorkspaceDetails };

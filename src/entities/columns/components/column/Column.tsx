@@ -14,6 +14,13 @@ type Props = {
 	isLoading: boolean;
 }
 
+const mockRequest = (ms: number, response: unknown) => {
+	return new Promise((resolve, reject) => {
+		// твой код, который ответит через {ms}
+		// опционально выдаст {response} resolve()
+	});
+}
+
 const Column = ({isLoading, column}: Props) => {
 	const [loading, cards] = useCards();
 	const formSubmit = async (title: string) => {

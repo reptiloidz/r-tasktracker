@@ -7,9 +7,17 @@ const BoardCollection = ({boards, isLoading}: BoardProps) => {
 
 	const {id} = useParams();
 
+	if (isLoading) {
+		return (
+			<div className='preloader'/>
+		)
+	}
+
 	const boardCollection = boards.map(
 		(board) => {
-			if (id !== board.relatedTo?.toString()) return null;
+			if (id !== board.relatedTo?.toString()) {
+				return null;
+			}
 
 			return (
 				<li
@@ -29,12 +37,6 @@ const BoardCollection = ({boards, isLoading}: BoardProps) => {
 			);
 		}
 	);
-
-	if (isLoading) {
-		return (
-			<div className='preloader'/>
-		)
-	}
 
 	return (
 		<React.Fragment>

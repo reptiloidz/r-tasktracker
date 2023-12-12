@@ -18,7 +18,6 @@ const PopupForm = ({
 			<div className="popup__body">
 				{children}
 			</div>
-
 			<div className="popup__footer">
 				<Button
 					className='btn btn--primary btn--xs'
