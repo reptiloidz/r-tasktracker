@@ -21,8 +21,9 @@ const CardNew = ({
 	}
 
 	const cancelHandler = () => {
-		setCardTitle('');
 		setFormVisible(false);
+
+		setCardTitle('');
 	}
 
 	const changeTitleHandler: React.ChangeEventHandler<HTMLTextAreaElement> = (e) => {
@@ -39,9 +40,10 @@ const CardNew = ({
 	const submitHandler: React.MouseEventHandler<HTMLButtonElement> = (e) => {
 		e.preventDefault();
 
-		setCardTitle(''); //todo not w
 		setFormVisible(false);
 		addCardHandler(cardTitle);
+
+		setCardTitle(''); //todo not w
 	}
 
 	return (

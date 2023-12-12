@@ -5,11 +5,13 @@ import {Button} from "../../../../shared/ui/button/Button";
 import { Column } from '../../components/column/Column';
 import {ColumnCollectionProps} from "./typings";
 import {ColumnNew} from "../../widgets/column-new/ColumnNew";
+import {useValidationInput} from "../../../../shared/hooks/useValidationInput";
 
 const ColumnCollection = ({isLoading, columns}: ColumnCollectionProps) => {
 	const {id} = useParams();
 	const [newColumnTitle, setNewColumnTitle] = useState('');
 	const [newColumn, setNewColumn] = useState(false);
+	const columnTitleValidate = useValidationInput('', {isEmpty: true, minLength: 3});
 
 	const pushNewColumn: React.MouseEventHandler<HTMLButtonElement> = (e) => {
 		e.preventDefault();
@@ -24,14 +26,20 @@ const ColumnCollection = ({isLoading, columns}: ColumnCollectionProps) => {
 
 	const addNewColumn = () => {
 		setNewColumn(true);
+
+		setNewColumnTitle('');
 	};
 
 	const cancelAddNewColumn = () => {
 		setNewColumn(false);
+
+		setNewColumnTitle('');
 	};
 
 	const newColumnTitleValue: React.ChangeEventHandler<HTMLInputElement> = (e) => {
 		setNewColumnTitle(e.target.value);
+
+		columnTitleValidate.onChange(e);
 	};
 
 	const columnCollection = columns
@@ -68,11 +76,61 @@ const ColumnCollection = ({isLoading, columns}: ColumnCollectionProps) => {
 
 				{newColumn &&
 					<div className='layered-content__item'>
+						{/*<form className='widget widget--primary'>*/}
+						{/*	<div className='field'>*/}
+						{/*		<input*/}
+						{/*			className='field__control'*/}
+						{/*			type='text'*/}
+						{/*			placeholder='Название'*/}
+						{/*			onChange={newColumnTitleValue}*/}
+						{/*			value={columnTitleValidate.value}*/}
+						{/*			name={newColumnTitle}*/}
+						{/*		/>*/}
+						{/*	</div>*/}
+
+						{/*	{*/}
+						{/*		(columnTitleValidate.isDirty && columnTitleValidate.isEmpty) &&*/}
+						{/*		<p>Поле не может быть пустым</p>*/}
+						{/*	}*/}
+						{/*	{*/}
+						{/*		(columnTitleValidate.isDirty && columnTitleValidate.minLengthError) &&*/}
+						{/*		<p>Минимальная длина не менее 3х</p>*/}
+						{/*	}*/}
+
+						{/*	<Button*/}
+						{/*		className='btn btn--secondary btn--xs'*/}
+						{/*		type='submit'*/}
+						{/*		onClick={pushNewColumn}*/}
+						{/*		disabled={!columnTitleValidate.inputValid}*/}
+						{/*	>*/}
+						{/*		Добавить*/}
+						{/*	</Button>*/}
+
+						{/*	<Button*/}
+						{/*		className='btn btn--primary btn--xs'*/}
+						{/*		onClick={cancelAddNewColumn}*/}
+						{/*	>*/}
+						{/*		Отменить*/}
+						{/*	</Button>*/}
+						{/*</form>*/}
+
 						<ColumnNew
 							onChange={newColumnTitleValue}
 							onSubmit={pushNewColumn}
 							onCancel={cancelAddNewColumn}
-						/>
+							inputName='newColumnTitle'
+							inputValue={columnTitleValidate.value}
+							isDisabledPush={!columnTitleValidate.inputValid}
+						>
+							{
+								(columnTitleValidate.isDirty && columnTitleValidate.isEmpty) &&
+								<p>Поле не может быть пустым</p>
+							}
+							{
+								(columnTitleValidate.isDirty && columnTitleValidate.minLengthError) &&
+								<p>Минимальная длина не менее 3х</p>
+							}
+						</ColumnNew>
 					</div>
 				}
 			</li>

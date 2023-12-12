@@ -5,7 +5,11 @@ import {ColumnNewProps} from "./typings";
 const ColumnNew = ({
 	onChange,
 	onSubmit,
-	onCancel
+	onCancel,
+	inputName,
+	inputValue,
+	isDisabledPush,
+	children,
 }: ColumnNewProps) => {
 
 	const submitHandler: ColumnNewProps['onSubmit'] = (e) => {
@@ -34,13 +38,18 @@ const ColumnNew = ({
 					type='text'
 					placeholder='Название'
 					onChange={inputValueHandler}
+					value={inputValue}
+					name={inputName}
 				/>
 			</div>
+
+			{children}
 
 			<Button
 				className='btn btn--secondary btn--xs'
 				type='submit'
 				onClick={submitHandler}
+				disabled={isDisabledPush}
 			>
 				Добавить
 			</Button>

@@ -3,6 +3,7 @@ import {Dropdown} from "../../../../shared/ui/dropdown/Dropdown";
 import {BoardFormProps} from "./typings";
 import {Popup} from "../../../../shared/components/popup/Popup";
 import {PopupForm} from "../../../../shared/components/popup-form/PopupForm";
+import {useValidationInput} from "../../../../shared/hooks/useValidationInput";
 
 const BoardForm = ({
 	onCancel,
@@ -13,7 +14,6 @@ const BoardForm = ({
 	onSubmit,
 	isOpen,
 }: BoardFormProps) => {
-
 	const closeHandler: BoardFormProps['onCancel'] = (e) => {
 		if (onCancel) {
 			onCancel(e);

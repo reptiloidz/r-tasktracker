@@ -4,7 +4,8 @@ import {PopupFormProps} from "./typings";
 
 const PopupForm = ({
 	children,
-	onSubmit
+	onSubmit,
+	isDisabledSubmit,
 }: PopupFormProps) => {
 	const submitHandler: PopupFormProps['onSubmit'] = (e) => {
 		if (onSubmit) {
@@ -23,6 +24,7 @@ const PopupForm = ({
 					className='btn btn--primary btn--xs'
 					onClick={submitHandler}
 					type='submit'
+					disabled={isDisabledSubmit}
 				>
 					Создать
 				</Button>

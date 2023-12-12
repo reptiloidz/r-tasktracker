@@ -3,6 +3,7 @@ import {Button} from "../../../../shared/ui/button/Button";
 import {Popup} from "../../../../shared/components/popup/Popup";
 import {PopupForm} from "../../../../shared/components/popup-form/PopupForm";
 import {database} from "../../../../app/firebase";
+import {useValidationInput} from "../../../../shared/hooks/useValidationInput";
 
 const WorkspaceNew = () => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -10,8 +11,15 @@ const WorkspaceNew = () => {
 	const [newWorkspaceTitle, setNewWorkspaceTitle] = useState('');
 	const [newWorkspaceDescription, setNewWorkspaceDescription] = useState('');
 
+	const workspaceTitleValidate = useValidationInput(
+		'',
+		{isEmpty: true, minLength: 3},
+		);
+
 	const newWorkspaceTitleValue: React.ChangeEventHandler<HTMLInputElement> = (e) => {
 		setNewWorkspaceTitle(e.target.value);
+
+		workspaceTitleValidate.onChange(e);
 	}
 
 	const newWorkspaceDescriptionValue: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -23,6 +31,8 @@ const WorkspaceNew = () => {
 
 	const closeModal = () => {
 		setIsOpen(false);
+
+		setNewWorkspaceDescription('');
 	};
 
 	const pushNewWorkspace: React.MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -33,9 +43,10 @@ const WorkspaceNew = () => {
 			description: newWorkspaceDescription,
 		}).catch(alert);
 
+		closeModal();
+
 		setNewWorkspaceTitle('');
 		setNewWorkspaceDescription('');
-		closeModal();
 	};
 
 	return (
@@ -54,6 +65,7 @@ const WorkspaceNew = () => {
 			>
 				<PopupForm
 					onSubmit={pushNewWorkspace}
+					isDisabledSubmit={!workspaceTitleValidate.inputValid}
 				>
 					<div className='field'>
 						{/*<div className="field__title">*/}
@@ -62,11 +74,23 @@ const WorkspaceNew = () => {
 						<input
 							className='field__control'
 							type='text'
+							name='newWorkspaceTitle'
 							placeholder='Название'
-							value={newWorkspaceTitle}
+							value={workspaceTitleValidate.value}
 							onChange={newWorkspaceTitleValue}
 						/>
 					</div>
+
+
+					{
+						(workspaceTitleValidate.isDirty && workspaceTitleValidate.isEmpty) &&
+						<p>{workspaceTitleValidate.isEmptyErrorText}</p>
+					}
+					{
+						(workspaceTitleValidate.isDirty && workspaceTitleValidate.minLengthError) &&
+						<p>{workspaceTitleValidate.minLengthErrorText}</p>
+					}
+
 					<div className='field'>
 						{/*<div className="field__title">*/}
 						{/*	Описание*/}
