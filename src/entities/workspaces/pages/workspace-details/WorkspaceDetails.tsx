@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../../../shared/ui/button/Button';
 import { BoardCollection } from '../../../boards/components/board-collection/BoardCollection';
@@ -20,18 +20,16 @@ const WorkspaceDetails = () => {
 
 	const goBack = () => navigate(-1);
 
-	// console.log(!boards.length)
-
 	// todo
-	// if (!boards.length) {
-	// 	navigate('/*');
-	// }
-
-	const workspaceDetailsTitle = workspaceDetails.title ? workspaceDetails.title : '';
+	useEffect(() => {
+		if (!loadingBoards && workspaceDetails === null) {
+			navigate('/*');
+		}
+	}, [loadingBoards, navigate, workspaceDetails]);
 
 	return (
 		<div>
-			<PageHeader title={`Рабочее пространство ${workspaceDetailsTitle}`}>
+			<PageHeader title={`Рабочее пространство ${workspaceDetails?.title || ''}`}>
 				<Link className="header__btn btn btn--primary btn--xs" to="edit">
 					Редактировать
 				</Link>
