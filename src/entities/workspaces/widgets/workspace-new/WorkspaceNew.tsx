@@ -11,7 +11,7 @@ const WorkspaceNew = () => {
 	const [newWorkspaceTitle, setNewWorkspaceTitle] = useState('');
 	const [newWorkspaceDescription, setNewWorkspaceDescription] = useState('');
 
-	const workspaceTitleValidate = useValidationInput('', { isEmpty: true, minLength: 3 });
+	const [workspaceTitleValidate, error] = useValidationInput('', { isEmpty: true, minLength: 3 });
 
 	const newWorkspaceTitleValue: React.ChangeEventHandler<HTMLInputElement> = e => {
 		setNewWorkspaceTitle(e.target.value);

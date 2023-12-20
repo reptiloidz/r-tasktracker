@@ -8,7 +8,7 @@ const CardNew = ({
 }: CardNewProps) => {
 	const [formVisible, setFormVisible] = useState(false);
 	const [cardTitle, setCardTitle] = useState('');
-	const cardTitleValidate = useValidationInput('', {isEmpty: true, minLength: 3});
+	const [cardTitleValidate, error] = useValidationInput('', {isEmpty: true, minLength: 3});
 
 	const addCardHandler: CardNewProps['onAddCard'] = (e) => {
 		if (onAddCard) {
@@ -71,11 +71,11 @@ const CardNew = ({
 
 						{
 							(cardTitleValidate.isDirty && cardTitleValidate.isEmpty) &&
-							<p>Поле не может быть пустым</p>
+							<p>{error}</p>
 						}
 						{
 							(cardTitleValidate.isDirty && cardTitleValidate.minLength) &&
-							<p>Минимальная длина не менее 3х</p>
+							<p>{error}</p>
 						}
 
 

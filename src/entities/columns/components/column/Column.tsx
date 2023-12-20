@@ -25,17 +25,14 @@ const mockRequest = (ms: number, response: unknown) => {
 		setTimeout(() => {
 			console.log('Код, который ответил через', ms);
 			resolve(response);
+			reject(new Error('Ошибка mockRequest'));
 		}, ms);
-
-		reject(new Error('Ошибка mockRequest'));
 	});
 };
 
 mockRequest(5000, 1)
-	.then(
-		result => result,
-		error => error,
-	);
+	.then(console.log)
+	.catch(console.log)
 
 const Column = ({ isLoading, column }: Props) => {
 	const [loading, cards] = useCards();

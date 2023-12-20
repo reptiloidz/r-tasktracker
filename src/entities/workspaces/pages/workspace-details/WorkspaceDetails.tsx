@@ -21,11 +21,9 @@ const WorkspaceDetails = () => {
 	const goBack = () => navigate(-1);
 
 	// todo
-	useEffect(() => {
-		if (!loadingBoards && workspaceDetails === null) {
-			navigate('/*');
-		}
-	}, [loadingBoards, navigate, workspaceDetails]);
+	if (!loadingBoards && workspaceDetails === null) {
+		return <p>нихуя</p>
+	}
 
 	return (
 		<div>
