@@ -74,7 +74,7 @@ const CardNew = ({
 							<p>Поле не может быть пустым</p>
 						}
 						{
-							(cardTitleValidate.isDirty && cardTitleValidate.minLengthError) &&
+							(cardTitleValidate.isDirty && cardTitleValidate.minLength) &&
 							<p>Минимальная длина не менее 3х</p>
 						}
 

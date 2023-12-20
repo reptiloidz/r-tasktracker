@@ -1,17 +1,11 @@
 import React from 'react';
-import {PageHeaderProps} from "./typings";
+import { PageHeaderProps } from './typings';
 
-const PageHeader = ({
-	title,
-	children,
-}: PageHeaderProps) => {
-
+const PageHeader = ({ title, children }: PageHeaderProps) => {
 	return (
 		<React.Fragment>
 			<div className="header">
-				<h2 className='header__title'>
-					{title}
-				</h2>
+				<h2 className="header__title">{title}</h2>
 
 				{children}
 			</div>
@@ -19,4 +13,4 @@ const PageHeader = ({
 	);
 };
 
-export {PageHeader};
+export { PageHeader };

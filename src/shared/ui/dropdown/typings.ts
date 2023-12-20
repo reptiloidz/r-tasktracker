@@ -1,7 +1,8 @@
-import {ChangeEventHandler} from "react";
+import { ChangeEventHandler } from 'react';
+import { Workspace } from '../../../entities/workspaces/components/workspace-collection/typings';
 
 export type DropdownProps = {
-	options?: any;
+	options: Workspace[]; //todo type
 	onChange?: ChangeEventHandler<HTMLSelectElement>;
-	value?: any
-}
+	value?: string;
+};

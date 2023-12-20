@@ -2,14 +2,16 @@ import {useEffect, useRef, useState} from 'react';
 
 const useFirstRender = (): boolean => {
 	// реализовать хук, срабатывающий только при первом рендере
-	const [state, setState] = useState(true);
+	const state = useRef<boolean>(true);
 
-	useEffect(() => {
-		console.log('componentDidMount');
-		setState(false);
-	}, []);
+	if (state.current) {
+		state.current = false;
 
-	return state;
-}
+		// console.log('componentDidMount');
+		return true;
+	}
 
-export {useFirstRender};
+	return false;
+};
+
+export { useFirstRender };

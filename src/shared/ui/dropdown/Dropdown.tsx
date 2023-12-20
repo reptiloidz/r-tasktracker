@@ -1,25 +1,19 @@
 import React from 'react';
-import {DropdownProps} from "./typings";
+import { DropdownProps } from './typings';
 
-const Dropdown = ({options, onChange, value}: DropdownProps) => {
+const Dropdown = ({ options, onChange, value }: DropdownProps) => {
 	return (
-		<select
-			value={value}
-			onChange={onChange}
-		>
+		<select value={value} onChange={onChange}>
 			{
-				options.map(
-					(option: any) =>
-						<option
-							key={option.id}
-							value={option.id}
-						>
-							{option.title}
-						</option>
-				)
+				//todo type
+				options.map(option => (
+					<option key={option.id} value={option.id}>
+						{option.title}
+					</option>
+				))
 			}
 		</select>
 	);
 };
 
-export {Dropdown};
+export { Dropdown };

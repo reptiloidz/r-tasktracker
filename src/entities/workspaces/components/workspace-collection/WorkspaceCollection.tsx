@@ -1,54 +1,30 @@
 import React from 'react';
-import {WorkspaceProps} from "./typings";
-import {Link} from "react-router-dom";
+import { WorkspaceProps } from './typings';
+import { Workspace } from '../workspace/Workspace';
 
 const WorkspaceCollection = ({ workspaces, isLoading }: WorkspaceProps) => {
 	if (isLoading) {
-		return (
-			<div className='preloader' />
-		)
+		return <div className="preloader" />;
 	}
 
 	if (!workspaces.length) {
-		return (
-			<p>Не&nbsp;найдено рабочих пространств. Создайте новое, чтобы начать работу</p>
-		)
+		return <p>Не&nbsp;найдено рабочих пространств. Создайте новое, чтобы начать работу</p>;
 	}
 
 	// if (isError)
 
-	const workspaceCollection = workspaces.map(
-		(workspace) =>
-			<li
-				key={workspace.id}
-			>
-				<Link
-					className='widget widget--primary widget--interactive'
-					to={`/workspace/${workspace.id}`}
-				>
-					{ workspace.title &&
-						<span className='widget__title'>
-							{workspace.title}
-						</span>
-					}
-
-					<span>
-						{workspace.id}
-					</span>
-					{ workspace.description &&
-						<span className='widget__description'>
-							{workspace.description}
-						</span>
-					}
-				</Link>
-			</li>
-	);
-
 	return (
-		<ul className='workspaces'>
-			{workspaceCollection}
+		<ul className="workspaces">
+			{workspaces.map(workspace => (
+				<Workspace
+					key={workspace.id}
+					id={workspace.id}
+					title={workspace.title}
+					description={workspace.description}
+				/>
+			))}
 		</ul>
 	);
 };
 
-export {WorkspaceCollection};
+export { WorkspaceCollection };

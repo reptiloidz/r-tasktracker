@@ -7,7 +7,7 @@
 	background-color: var(--cl-white);
 	display: flex;
 	flex-direction: column;
-	align-items: start;
+	align-items: flex-start;
 	color: var(--card-cl);
 
 	&__title,
@@ -17,6 +17,8 @@
 
 	&__title {
 		font-weight: 700;
+		color: var(--cl-black);
+		text-decoration: none;
 	}
 
 	&__description {

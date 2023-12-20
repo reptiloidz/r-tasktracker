@@ -1,11 +1,12 @@
-import React, {ChangeEventHandler, FormEventHandler} from "react";
-import {PopupProps} from "../../../../shared/components/popup/typings";
-import {PopupFormProps} from "../../../../shared/components/popup-form/typings";
+import { ChangeEventHandler } from 'react';
+import { PopupProps } from '../../../../shared/components/popup/typings';
+import { PopupFormProps } from '../../../../shared/components/popup-form/typings';
+import { Workspace } from '../../../workspaces/components/workspace-collection/typings';
 
 export interface BoardFormProps {
 	isOpen?: PopupProps['isOpen'];
-	dropdownValue: any;
-	dropdownOptions: any;
+	dropdownValue?: string;
+	dropdownOptions: Workspace[];
 	onCancel?: PopupProps['onCancel'];
 	onDropdownChange?: ChangeEventHandler<HTMLSelectElement>;
 	onInputChange?: ChangeEventHandler<HTMLInputElement>;

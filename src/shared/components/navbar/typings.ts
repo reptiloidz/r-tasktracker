@@ -6,4 +6,4 @@ export type NavLinks = {
 	id: string;
 	text: string;
 	link: string;
-}
+};

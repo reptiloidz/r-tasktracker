@@ -1,48 +1,26 @@
 import React from 'react';
-import {BoardProps} from "./typings";
-import {Link, useParams} from "react-router-dom";
+import { BoardProps } from './typings';
+import { useParams } from 'react-router-dom';
+import { Board } from '../board/Board';
+import { Loader } from '../../../../shared/components/loader/loader';
 
 //  uuid
-const BoardCollection = ({boards, isLoading}: BoardProps) => {
-
-	const {id} = useParams();
+const BoardCollection = ({ boards, isLoading }: BoardProps) => {
+	const { id } = useParams();
 
 	if (isLoading) {
-		return (
-			<div className='preloader'/>
-		)
+		return <Loader />;
 	}
-
-	const boardCollection = boards.map(
-		(board) => {
-			if (id !== board.relatedTo?.toString()) {
-				return null;
-			}
-
-			return (
-				<li
-					key={board.id}
-					/* key пишем у обертки итерируемого эл-та,
-					* иначе ошибка child in a list should have a unique "key" prop. */
-				>
-					<Link
-						className='widget widget--primary widget--interactive'
-						to={`/board/${board.id}`}
-					>
-						<h3>
-							{board.title}
-						</h3>
-					</Link>
-				</li>
-			);
-		}
-	);
 
 	return (
 		<React.Fragment>
-			{boardCollection}
+			{boards
+				.filter(board => id === board.relatedTo.toString())
+				.map(board => (
+					<Board key={board.id} id={board.id} title={board.title} />
+				))}
 		</React.Fragment>
 	);
 };
 
-export {BoardCollection};
+export { BoardCollection };

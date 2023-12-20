@@ -6,6 +6,7 @@ import { Column } from '../../components/column/Column';
 import {ColumnCollectionProps} from "./typings";
 import {ColumnNew} from "../../widgets/column-new/ColumnNew";
 import {useValidationInput} from "../../../../shared/hooks/useValidationInput";
+import {Loader} from "../../../../shared/components/loader/loader";
 
 const ColumnCollection = ({isLoading, columns}: ColumnCollectionProps) => {
 	const {id} = useParams();
@@ -13,10 +14,10 @@ const ColumnCollection = ({isLoading, columns}: ColumnCollectionProps) => {
 	const [newColumn, setNewColumn] = useState(false);
 	const columnTitleValidate = useValidationInput('', {isEmpty: true, minLength: 3});
 
-	const pushNewColumn: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+	const pushNewColumn: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
 		e.preventDefault();
 
-		database.ref('columns').push({
+		await database.ref('columns').push({
 			title: newColumnTitle,
 			relatedTo: id,
 		}).catch(alert);
@@ -56,7 +57,7 @@ const ColumnCollection = ({isLoading, columns}: ColumnCollectionProps) => {
 
 	if (isLoading) {
 		return (
-			<div className='preloader'/>
+			<Loader/>
 		)
 	}
 
@@ -127,7 +128,7 @@ const ColumnCollection = ({isLoading, columns}: ColumnCollectionProps) => {
 								<p>Поле не может быть пустым</p>
 							}
 							{
-								(columnTitleValidate.isDirty && columnTitleValidate.minLengthError) &&
+								(columnTitleValidate.isDirty && columnTitleValidate.minLength) &&
 								<p>Минимальная длина не менее 3х</p>
 							}
 						</ColumnNew>

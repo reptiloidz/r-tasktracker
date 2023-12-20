@@ -1,5 +1,5 @@
-import {Workspace} from "../../../workspaces/components/workspace-collection/typings";
-import {BoardFormProps} from "../board-form/typings";
+import { Workspace } from '../../../workspaces/components/workspace-collection/typings';
+import { BoardFormProps } from '../board-form/typings';
 
 export interface BoardNewProps {
 	workspaces: Workspace[];

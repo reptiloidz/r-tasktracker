@@ -1,19 +1,17 @@
-import {Workspace} from "../../entities/workspaces/components/workspace-collection/typings";
-import {useEffect, useState} from "react";
-import {database} from "../../app/firebase";
+import { Workspace } from '../../entities/workspaces/components/workspace-collection/typings';
+import { useEffect, useState } from 'react';
+import { database } from '../../app/firebase';
 
 export const useWorkspaceDetails = (id?: string): Workspace => {
 	const [workspaceSelected, setWorkspaceSelected] = useState<any>([]);
 
 	useEffect(() => {
-			database
-				.ref(`/workspaces/${id}`)
-				.on('value', (snapshot) => {
-					const workspaceDataSelected = snapshot.val();
+		database.ref(`/workspaces/${id}`).on('value', snapshot => {
+			const workspaceDataSelected = snapshot.val();
 
-					setWorkspaceSelected(workspaceDataSelected);
-				});
-		}, []);
+			setWorkspaceSelected(workspaceDataSelected);
+		});
+	}, [id]);
 
 	return workspaceSelected;
 };

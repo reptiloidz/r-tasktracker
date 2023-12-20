@@ -1,9 +1,7 @@
 import React from 'react';
 
 const WorkspaceForm = () => {
-	return (
-		<div></div>
-	);
+	return <div></div>;
 };
 
-export {WorkspaceForm};
+export { WorkspaceForm };

@@ -1,55 +1,46 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from 'react';
+import { ErrorValidation } from './typings';
 
-export const useValidation = (
-	value: string,
-	validations: [],
-	...errors: any
-) => {
+export const useValidation = (value: string, validations: ErrorValidation[]) => {
 	const [isEmpty, setIsEmpty] = useState(true);
-	const [minLengthError, setMinlengthError] = useState(false);
-	const [maxLengthError, setMaxlengthError] = useState(false);
+	const [minLength, setMinlength] = useState(false);
+	const [maxLength, setMaxlength] = useState(false);
 	const [inputValid, setInputValid] = useState(false);
-	const [minLengthErrorText, setMinLengthErrorText] = useState('Строка слишком короткая');
-	const [maxLengthErrorText, setMaxLengthErrorText] = useState('Строка слишком длинная');
-	const [isEmptyErrorText, setIsEmptyErrorText] = useState('Поле не может быть пустым');
 
 	useEffect(() => {
 		for (const validation in validations) {
 			switch (validation) {
 				case 'minLength':
-					value.length < validations[validation] ? setMinlengthError(true) : setMinlengthError(false);
-					setMinLengthErrorText(minLengthErrorText);
+					value.length < validations[validation] ? setMinlength(true) : setMinlength(false);
 					break;
 
 				case 'maxLength':
-					value.length > validations[validation] ? setMaxlengthError(true) : setMaxlengthError(false);
-					setMaxLengthErrorText(maxLengthErrorText);
+					value.length > validations[validation] ? setMaxlength(true) : setMaxlength(false);
 					break;
 
 				case 'isEmpty':
 					value ? setIsEmpty(false) : setIsEmpty(true);
-					setIsEmptyErrorText(isEmptyErrorText);
 					break;
 			}
 		}
-	}, [value]);
+	}, [validations, value]);
 
 	useEffect(() => {
-		if (isEmpty || maxLengthError || minLengthError) {
+		if (isEmpty || maxLength || minLength) {
 			setInputValid(false);
 			return;
 		}
 
 		setInputValid(true);
-	}, [isEmpty, maxLengthError, minLengthError]);
+	}, [isEmpty, maxLength, minLength]);
 
 	return {
 		isEmpty,
-		minLengthError,
-		maxLengthError,
+		minLength,
+		maxLength,
 		inputValid,
-		minLengthErrorText,
-		maxLengthErrorText,
-		isEmptyErrorText,
-	}
+		// minLengthText,
+		// maxLengthText,
+		// isEmptyErrorText,
+	};
 };
