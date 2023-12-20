@@ -15,3 +15,9 @@ export const getBoards = async () => {
         };
     })
 }
+
+// const b: CheckNumber<3> = '123'
+//
+// export type CheckNumber<NumberVariable> = NumberVariable extends 3
+//     ? 'true'
+//     : 'false';
