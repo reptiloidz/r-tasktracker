@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { useValidation } from './useValidation';
+import {Checkers, useValidation} from './useValidation';
+
+export type ValidationInputResult = Checkers & {
+	value: string;
+	onChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+	onBlur: (e: React.FocusEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+	isDirty: boolean;
+}
 
 export const useValidationInput = (
 	initialValue: string,
@@ -7,10 +14,10 @@ export const useValidationInput = (
 	// isEmptyErrorText?: string,
 	// minLengthErrorText?: string,
 	// maxLengthErrorText?: string,
-) => {
+): [ValidationInputResult, string] => {
 	const [value, setValue] = useState(initialValue);
 	const [isDirty, setIsDirty] = useState(false);
-	const valid = useValidation(
+	const [valid, error] = useValidation(
 		value,
 		// isDirty,
 		validations,
@@ -27,11 +34,11 @@ export const useValidationInput = (
 		setIsDirty(true);
 	};
 
-	return {
+	return [{
 		value,
 		onChange,
 		onBlur,
 		isDirty,
 		...valid,
-	};
+	}, error];
 };

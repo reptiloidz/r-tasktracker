@@ -9,4 +9,5 @@ export type Board = {
 	id: string;
 	title: string;
 	relatedTo: Workspace['id'];
+	key: string;
 };

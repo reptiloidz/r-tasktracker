@@ -30,7 +30,7 @@ const WorkspaceDetails = () => {
 
 	return (
 		<div>
-			<PageHeader title={`Рабочее пространство ${workspaceDetailsTitle}`}>
+			<PageHeader title={`Рабочее пространство ${workspaceDetails?.title || ''}`}>
 				<Link className="header__btn btn btn--primary btn--xs" to="edit">
 					Редактировать
 				</Link>

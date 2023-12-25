@@ -12,7 +12,7 @@ const ColumnCollection = ({isLoading, columns}: ColumnCollectionProps) => {
 	const {id} = useParams();
 	const [newColumnTitle, setNewColumnTitle] = useState('');
 	const [newColumn, setNewColumn] = useState(false);
-	const columnTitleValidate = useValidationInput('', {isEmpty: true, minLength: 3});
+	const [columnTitleValidate, error] = useValidationInput('', {isEmpty: true, minLength: 3});
 
 	const pushNewColumn: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
 		e.preventDefault();
@@ -59,6 +59,16 @@ const ColumnCollection = ({isLoading, columns}: ColumnCollectionProps) => {
 		return (
 			<Loader/>
 		)
+	}
+
+	const validationError = () => {
+		if (columnTitleValidate.isEmpty) {
+			return error
+		}
+
+		if (columnTitleValidate.minLength) {
+			return error
+		}
 	}
 
 	return (
@@ -123,14 +133,7 @@ const ColumnCollection = ({isLoading, columns}: ColumnCollectionProps) => {
 							inputValue={columnTitleValidate.value}
 							isDisabledPush={!columnTitleValidate.inputValid}
 						>
-							{
-								(columnTitleValidate.isDirty && columnTitleValidate.isEmpty) &&
-								<p>Поле не может быть пустым</p>
-							}
-							{
-								(columnTitleValidate.isDirty && columnTitleValidate.minLength) &&
-								<p>Минимальная длина не менее 3х</p>
-							}
+							{columnTitleValidate.isDirty && <p>{validationError()}</p> }
 						</ColumnNew>
 					</div>
 				}
