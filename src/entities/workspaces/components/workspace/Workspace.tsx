@@ -4,28 +4,35 @@ import { Link } from 'react-router-dom';
 import { Button } from '../../../../shared/ui/button/Button';
 import { database } from '../../../../app/firebase';
 import { Popup } from '../../../../shared/components/popup/Popup';
-import {useBoardDetails} from "../../../../shared/hooks/useBoardDetails";
-import {useBoards} from "../../../../shared/hooks/useBoards";
-import {useColumns} from "../../../../shared/hooks/useColumns";
-import {useWorkspaces} from "../../../../shared/hooks/useWorkspaces";
+import { useBoards } from '../../../../shared/hooks/useBoards';
 
 const Workspace = ({ id, title, description }: WorkspaceProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [, boards] = useBoards();
-	const [, columns] = useColumns();
-	const deleteWorkspace = async () => {
-		// await database.ref(`workspaces/${id}`).set(null).catch(alert);
 
-		// const a: string[] = [];
-		const deleteTree = boards.filter(board => id === board.relatedTo?.toString());
+	const [errText, setErrText] = useState('');
+	const deleteWorkspace = async () => {
+		const boardCollection = boards.filter(board => id === board.relatedTo?.toString());
+
+		console.log(!!boardCollection.length)
+
+		if (!boardCollection.length) {
+			await database.ref(`workspaces/${id}`).set(null).catch(alert);
+
+			return;
+		}
+
+		setErrText('Рабочее пространство непустое, сначала удалите все дочение элементы');
+
+		// todo не удалять ws пока не удалены дочерние элементы
+		// todo при удалении задач перемещать в какую-то другую колонку
+		// todo поставить es-lint
+		// deleteTree.map(board => database.ref(`boards/${board.id}`).set(null).catch(alert));
 		// deleteBoards.map(board => a.push(board.id));
 
 		// const boardsDelete = boards.filter(board => {
 		// 	id === board.relatedTo.toString();
 		// });
-		
-		
-		// boardsDelete.map(board => database.ref(`boards/${board.id}`).set(null).catch(alert));
 
 		// columns
 		// 	.filter(columns => id === board.relatedTo.toString())
@@ -41,6 +48,7 @@ const Workspace = ({ id, title, description }: WorkspaceProps) => {
 	};
 	const closeDeleteDialog = () => {
 		setIsOpen(false);
+		setErrText('');
 	};
 
 	return (
@@ -63,21 +71,19 @@ const Workspace = ({ id, title, description }: WorkspaceProps) => {
 
 			<Popup isOpen={isOpen} onCancel={closeDeleteDialog} title="Удалить рабочее пространство?">
 				<div className="popup__body">
-					<p>
-						Внимание, будет удалено рабочее пространство и все элементы, связанные с ним
-					</p>
+
+					{errText &&
+						<p>{errText}</p>
+					}
+					{!errText &&
+						<p>Внимание, будет удалено рабочее пространство</p>
+					}
 				</div>
 				<div className="popup__footer">
-					<Button
-						className="btn btn--xs btn--secondary"
-						onClick={deleteWorkspace}
-					>
+					<Button className="btn btn--xs btn--secondary" onClick={deleteWorkspace}>
 						Удалить
 					</Button>
-					<Button
-						className="btn btn--xs btn--primary"
-						onClick={closeDeleteDialog}
-					>
+					<Button className="btn btn--xs btn--primary" onClick={closeDeleteDialog}>
 						Отмена
 					</Button>
 				</div>

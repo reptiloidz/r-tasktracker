@@ -10,16 +10,21 @@ export const useBoards = (): [boolean, Board[]] => {
 		database.ref('/boards').on('value', snapshot => {
 			const boardsData = snapshot.val();
 
-			const boardList = Object.keys(boardsData).map(key => {
-				return {
-					key,
-					id: key,
-					title: boardsData[key].title,
-					relatedTo: boardsData[key].relatedTo,
-				};
-			});
-			setBoards(boardList);
+			if (boardsData) {
+				const boardList = Object.keys(boardsData).map(key => {
+					return {
+						key,
+						id: key,
+						title: boardsData[key].title,
+						relatedTo: boardsData[key].relatedTo,
+					};
+				});
+				setBoards(boardList);
+			}
+
 			setLoading(false);
+
+			return null;
 		});
 	}, []);
 

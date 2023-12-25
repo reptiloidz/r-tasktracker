@@ -10,6 +10,7 @@ export const useWorkspaces = (): [boolean, Workspace[]] => {
 		database.ref('/workspaces').on('value', snapshot => {
 			// todo правильно ли
 			const workspacesData = snapshot.val();
+			// console.log(snapshot.val())
 
 			if (workspacesData) {
 				const workspaceList = Object.keys(workspacesData).map(key => {
@@ -23,7 +24,7 @@ export const useWorkspaces = (): [boolean, Workspace[]] => {
 				setWorkspaces(workspaceList);
 			}
 
-			setLoading(false);
+			setLoading(false); // success | error | initial сделать варианты
 
 			return null;
 		});

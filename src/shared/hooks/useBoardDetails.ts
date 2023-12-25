@@ -10,7 +10,11 @@ export const useBoardDetails = (id?: string): Board => {
 		database.ref(`/boards/${id}`).on('value', snapshot => {
 			const boardDataSelected = snapshot.val();
 
-			setBoardSelected(boardDataSelected);
+			if (boardDataSelected) {
+				setBoardSelected(boardDataSelected);
+			}
+
+			return null;
 		});
 	}, [id]);
 

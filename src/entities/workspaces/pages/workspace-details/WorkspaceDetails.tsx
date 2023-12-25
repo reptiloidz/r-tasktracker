@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../../../shared/ui/button/Button';
 import { BoardCollection } from '../../../boards/components/board-collection/BoardCollection';
@@ -14,20 +14,19 @@ import { useWorkspaceDetails } from '../../../../shared/hooks/useWorkspaceDetail
 const WorkspaceDetails = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
-	const workspaceDetails: any = useWorkspaceDetails(id);
+	const workspaceDetails = useWorkspaceDetails(id);
 	const [, workspaces] = useWorkspaces();
 	const [loadingBoards, boards] = useBoards();
 
 	const goBack = () => navigate(-1);
 
-	// console.log(!boards.length)
+	useEffect(() => {
+		if (!loadingBoards && workspaceDetails === null) {
+			navigate('/*');
+		}
+	}, [loadingBoards, boards, navigate])
 
-	// todo
-	// if (!boards.length) {
-	// 	navigate('/*');
-	// }
-
-	const workspaceDetailsTitle = workspaceDetails.title ? workspaceDetails.title : '';
+	const workspaceDetailsTitle = workspaceDetails?.title || '';
 
 	return (
 		<div>

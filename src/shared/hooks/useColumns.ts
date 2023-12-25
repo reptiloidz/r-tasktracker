@@ -10,16 +10,21 @@ export const useColumns = (): [boolean, Column[]] => {
 		database.ref('/columns').on('value', snapshot => {
 			const columnsData = snapshot.val();
 
-			const columnList = Object.keys(columnsData).map(key => {
-				return {
-					key,
-					id: key,
-					title: columnsData[key].title,
-					relatedTo: columnsData[key].relatedTo,
-				};
-			});
-			setColumns(columnList);
+			if (columnsData) {
+				const columnList = Object.keys(columnsData).map(key => {
+					return {
+						key,
+						id: key,
+						title: columnsData[key].title,
+						relatedTo: columnsData[key].relatedTo,
+					};
+				});
+				setColumns(columnList);
+			}
+
 			setLoading(false);
+
+			return null;
 		});
 	}, []);
 

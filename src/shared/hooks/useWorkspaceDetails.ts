@@ -9,7 +9,11 @@ export const useWorkspaceDetails = (id?: string): Workspace => {
 		database.ref(`/workspaces/${id}`).on('value', snapshot => {
 			const workspaceDataSelected = snapshot.val();
 
-			setWorkspaceSelected(workspaceDataSelected);
+			if (workspaceDataSelected) {
+				setWorkspaceSelected(workspaceDataSelected);
+			}
+
+			return null;
 		});
 	}, [id]);
 

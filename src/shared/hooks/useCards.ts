@@ -10,16 +10,21 @@ export const useCards = (): [boolean, Card[]] => {
 		database.ref('/cards').on('value', snapshot => {
 			const cardsData = snapshot.val();
 
-			const cardList = Object.keys(cardsData).map(key => {
-				return {
-					key,
-					id: key,
-					title: cardsData[key].title,
-					relatedTo: cardsData[key].relatedTo,
-				};
-			});
-			setCards(cardList);
+			if (cardsData) {
+				const cardList = Object.keys(cardsData).map(key => {
+					return {
+						key,
+						id: key,
+						title: cardsData[key].title,
+						relatedTo: cardsData[key].relatedTo,
+					};
+				});
+				setCards(cardList);
+			}
+			
 			setLoading(false);
+
+			return null;
 		});
 	}, []);
 
