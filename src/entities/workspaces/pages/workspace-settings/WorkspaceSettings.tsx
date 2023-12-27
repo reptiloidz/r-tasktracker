@@ -24,7 +24,7 @@ const WorkspaceSettings = () => {
 		// todo при обновлении теряется значение инпута
 
 		console.log(workspaceTitleValue, workspaceDescriptionValue)
-	}, [workspaceTitleValue, workspaceDescriptionValue]);
+	}, [workspaceTitleValue, workspaceDescriptionValue, workspaceDetails.title, workspaceDetails.description]);
 
 	const deleteWorkspace = async () => {
 		// todo пока можно удалять только пустые, реализовать функцию удаления с перемещением досок в архив
