@@ -3,8 +3,8 @@ import { database } from '../../app/firebase';
 type Request = {
 	databaseUrl: string;
 };
-export const getPromiseFactory = (params: Request) => {
-	return new Promise((resolve, reject) => {
+export const getPromiseFactory = <Krol>(params: Request) => {
+	return new Promise<Krol>((resolve, reject) => {
 		database.ref(params.databaseUrl).on('value', snapshot => {
 			const boardsData = snapshot.val();
 
