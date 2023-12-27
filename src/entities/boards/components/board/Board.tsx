@@ -9,7 +9,11 @@ const Board = ({ id, title }: BoardProps) => {
 		 * иначе ошибка child in a list should have a unique "key" prop. */
 		>
 			<Link className="widget widget--primary widget--interactive" to={`/board/${id}`}>
-				<h3>{title}</h3>
+				<p className="link">
+					<span className="link__text">
+						{title}
+					</span>
+				</p>
 			</Link>
 		</li>
 	);

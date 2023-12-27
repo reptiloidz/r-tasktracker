@@ -7,4 +7,5 @@ export type Workspace = {
 	id: string;
 	description?: string;
 	title: string;
+	key: string;
 };

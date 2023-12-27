@@ -10,7 +10,7 @@ import { useBoardDetails } from '../../../../shared/hooks/useBoardDetails';
 const BoardDetails = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
-	const [loading, columns] = useColumns();
+	const [loading, columns, errorText] = useColumns();
 	const boardSelected = useBoardDetails(id);
 	const goBack = () => navigate(-1);
 
@@ -36,6 +36,12 @@ const BoardDetails = () => {
 					Назад
 				</Button>
 			</PageHeader>
+
+			{errorText &&
+				<p>
+					{errorText}
+				</p>
+			}
 
 			<ColumnCollection columns={columns} isLoading={loading} />
 		</React.Fragment>

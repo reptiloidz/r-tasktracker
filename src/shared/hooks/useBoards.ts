@@ -1,11 +1,12 @@
 import { Board } from '../../entities/boards/components/board-collection/typings';
 import { useEffect, useState } from 'react';
 import { database } from '../../app/firebase';
-import {getBoards} from "../firebase-context/data-context";
+import {getBoards} from "../firebase-context/boards-context";
 
-export const useBoards = (): [boolean, Board[]] => {
+export const useBoards = (): [boolean, Board[], string?] => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [boards, setBoards] = useState<Board[]>([]);
+	const [errorText, setErrorText] = useState('');
 
 	useEffect(() => {
 		getBoards()
@@ -13,6 +14,7 @@ export const useBoards = (): [boolean, Board[]] => {
 				setBoards(response);
 			})
 			.catch((err) => {
+				setErrorText('Не можем получить доступные доски')
 				setBoards([]);
 			})
 			.finally(() => {
@@ -20,5 +22,5 @@ export const useBoards = (): [boolean, Board[]] => {
 			})
 	}, []);
 
-	return [loading, boards];
+	return [loading, boards, errorText];
 };

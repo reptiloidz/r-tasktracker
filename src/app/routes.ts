@@ -11,7 +11,7 @@ import { BoardDetails } from '../entities/boards/pages/board-details/BoardDetail
 import { WorkspacePage } from './client/workspace-page/WorkspacePage';
 import { WorkspaceDetails } from '../entities/workspaces/pages/workspace-details/WorkspaceDetails';
 import { Layout } from '../pages/Layout';
-import { WorkspaceEdit } from '../entities/workspaces/pages/workspace-edit/WorkspaceEdit';
+import { WorkspaceSettings } from '../entities/workspaces/pages/workspace-settings/WorkspaceSettings';
 import { BoardEdit } from '../entities/boards/pages/board-edit/BoardEdit';
 
 export const publicRoutes = [
@@ -30,7 +30,7 @@ export const publicRoutes = [
 	},
 	{
 		path: WORKSPACE_EDIT_ROUTE,
-		element: WorkspaceEdit,
+		element: WorkspaceSettings,
 	},
 	{
 		path: BOARD_DETAIL_ROUTE,

@@ -1,34 +1,26 @@
 import { useEffect, useState } from 'react';
-import { database } from '../../app/firebase';
 import { Workspace } from '../../entities/workspaces/components/workspace-collection/typings';
+import { getBoards } from '../firebase-context/boards-context';
+import {getWorkspaces} from "../firebase-context/workspaces-context";
 
-export const useWorkspaces = (): [boolean, Workspace[]] => {
+export const useWorkspaces = (): [boolean, Workspace[], string?] => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
+	const [errorText, setErrorText] = useState('');
 
 	useEffect(() => {
-		database.ref('/workspaces').on('value', snapshot => {
-			// todo правильно ли
-			const workspacesData = snapshot.val();
-			// console.log(snapshot.val())
-
-			if (workspacesData) {
-				const workspaceList = Object.keys(workspacesData).map(key => {
-					return {
-						key,
-						id: key,
-						title: workspacesData[key].title,
-						description: workspacesData[key].description,
-					};
-				});
-				setWorkspaces(workspaceList);
-			}
-
-			setLoading(false); // success | error | initial сделать варианты
-
-			return null;
-		});
+		getWorkspaces()
+			.then(response => {
+				setWorkspaces(response);
+			})
+			.catch(err => {
+				setErrorText('Не можем получить доступные рабочие пространства');
+				setWorkspaces([]);
+			})
+			.finally(() => {
+				setLoading(false);
+			});
 	}, []);
 
-	return [loading, workspaces];
+	return [loading, workspaces, errorText];
 };

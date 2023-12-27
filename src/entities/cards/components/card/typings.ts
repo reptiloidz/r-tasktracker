@@ -9,4 +9,5 @@ export type Card = {
 	id?: string;
 	title: string;
 	relatedTo?: Column['id'];
+	key: string;
 }

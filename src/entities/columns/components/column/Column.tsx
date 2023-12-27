@@ -6,7 +6,6 @@ import { database } from '../../../../app/firebase';
 import { useCards } from '../../../../shared/hooks/useCards';
 import { Loader } from '../../../../shared/components/loader/loader';
 import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
 
 type Props = {
 	column: {
@@ -35,7 +34,7 @@ mockRequest(5000, 1)
 	.catch(console.log)
 
 const Column = ({ isLoading, column }: Props) => {
-	const [loading, cards] = useCards();
+	const [, cards, errorText] = useCards();
 	const formSubmit = async (title: string) => {
 		await database
 			.ref('cards')
@@ -53,6 +52,11 @@ const Column = ({ isLoading, column }: Props) => {
 	return (
 		<div className="widget widget--primary">
 			<h2 className="widget__title">{column.title}</h2>
+			{errorText &&
+				<p>
+					{errorText}
+				</p>
+			}
 			{cards
 				.filter(card => card.relatedTo === column.id)
 				.map(card => (

@@ -9,4 +9,5 @@ export type Column = {
 	id?: string;
 	title: string;
 	relatedTo?: Board['id'];
+	key: string;
 };

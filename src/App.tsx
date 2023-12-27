@@ -21,7 +21,7 @@ function App() {
 			{/*<Route path='workspace/new/edit' element={<NotFoundPage/>}/>*/}
 			{/*Если две ссылки ссылаются на один компонент, то используем Navigate*/}
 			{/*replace позволяет не записывать в истории браузера переход ч-з Navigate*/}
-			<Route path="workspace/new/edit" element={<Navigate to={'*'} replace />} />
+			<Route path="workspace/new/settings" element={<Navigate to={'*'} replace />} />
 		</Routes>
 	);
 }

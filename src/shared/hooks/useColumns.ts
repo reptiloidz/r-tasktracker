@@ -1,32 +1,25 @@
 import { Column } from '../../entities/columns/pages/column-collection/typings';
 import { useEffect, useState } from 'react';
-import { database } from '../../app/firebase';
+import { getColumns } from '../firebase-context/columns-context';
 
-export const useColumns = (): [boolean, Column[]] => {
+export const useColumns = (): [boolean, Column[], string?] => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [columns, setColumns] = useState<Column[]>([]);
+	const [errorText, setErrorText] = useState('');
 
 	useEffect(() => {
-		database.ref('/columns').on('value', snapshot => {
-			const columnsData = snapshot.val();
-
-			if (columnsData) {
-				const columnList = Object.keys(columnsData).map(key => {
-					return {
-						key,
-						id: key,
-						title: columnsData[key].title,
-						relatedTo: columnsData[key].relatedTo,
-					};
-				});
-				setColumns(columnList);
-			}
-
-			setLoading(false);
-
-			return null;
-		});
+		getColumns()
+			.then(response => {
+				setColumns(response);
+			})
+			.catch(err => {
+				setErrorText('Не можем получить доступные колонки');
+				setColumns([]);
+			})
+			.finally(() => {
+				setLoading(false);
+			});
 	}, []);
 
-	return [loading, columns];
+	return [loading, columns, errorText];
 };

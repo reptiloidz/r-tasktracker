@@ -16,7 +16,7 @@ const WorkspaceDetails = () => {
 	const navigate = useNavigate();
 	const workspaceDetails = useWorkspaceDetails(id);
 	const [, workspaces] = useWorkspaces();
-	const [loadingBoards, boards] = useBoards();
+	const [loadingBoards, boards, errorText] = useBoards();
 
 	const goBack = () => navigate(-1);
 
@@ -24,21 +24,25 @@ const WorkspaceDetails = () => {
 		if (!loadingBoards && workspaceDetails === null) {
 			navigate('/*');
 		}
-	}, [loadingBoards, boards, navigate])
-
-	const workspaceDetailsTitle = workspaceDetails?.title || '';
+	}, [loadingBoards, boards, navigate]);
 
 	return (
 		<div>
 			<PageHeader title={`Рабочее пространство ${workspaceDetails?.title || ''}`}>
-				<Link className="header__btn btn btn--primary btn--xs" to="edit">
-					Редактировать
+				<Link className="header__btn btn btn--primary btn--xs" to="settings">
+					Настройки
 				</Link>
 
 				<Button className="header__btn btn btn--primary btn--xs" onClick={goBack}>
 					Назад
 				</Button>
 			</PageHeader>
+
+			{errorText &&
+				<p>
+					{errorText}
+				</p>
+			}
 
 			<ol className="row md:row-cols-3 xl:row-cols-4">
 				<BoardCollection boards={boards} isLoading={loadingBoards} />
