@@ -1,0 +1,19 @@
+@use 'sass:map';
+
+
+$utilities: () !default;
+
+// stylelint-disable-next-line scss/dollar-variable-colon-newline-after, scss/no-duplicate-dollar-variables, value-list-max-empty-lines, function-max-empty-lines
+$utilities: map-merge(
+	(
+		'row--gx': (
+			responsive: true,
+			property: '--gutter-x',
+			class: 'row--gx',
+			values: (0, 4, 8, 12, 16),
+		),
+	),
+	$utilities,
+);
+
+$enable-important-utilities: true;
