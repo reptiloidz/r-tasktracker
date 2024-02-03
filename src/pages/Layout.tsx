@@ -7,7 +7,7 @@ import { WorkspaceNew } from '../entities/workspaces/widgets/workspace-new/Works
 const Layout = () => {
 	return (
 		<React.Fragment>
-			<div className="row" style={{ height: '100%' }}>
+			<div className="row row--gx-0" style={{ height: '100%' }}>
 				<div className="md:col-4 navbar">
 					<Navbar navs={NavsData} />
 
@@ -19,9 +19,7 @@ const Layout = () => {
 				</div>
 
 				<div className="md:col-8">
-					<div style={{ overflowX: 'auto', height: '100%' }}>
-						<Outlet />
-					</div>
+					<Outlet />
 				</div>
 			</div>
 			{/*<footer>footer</footer>*/}

@@ -2,7 +2,7 @@ import { getPromiseFactory } from './promise-factory';
 import { Column } from '../../entities/columns/components/column/typings';
 
 export const getColumns = async () => {
-	const columnsData = (await getPromiseFactory({
+	const columnsData = (await getPromiseFactory<Column[]>({
 		databaseUrl: '/columns',
 	})) as Column[];
 

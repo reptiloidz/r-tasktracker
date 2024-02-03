@@ -15,6 +15,8 @@ function App() {
 				{publicRoutes.map(({ path, element }, index) => (
 					<Route key={index} path={path} Component={element} />
 				))}
+
+				{/*todo нужно ли вложенный роутинг*/}
 			</Route>
 
 			<Route path="*" element={<NotFoundPage />} />

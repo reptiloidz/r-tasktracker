@@ -153,7 +153,7 @@ const WorkspaceSettings = () => {
 						<li>Участники не смогут использовать закрытые доски</li>
 					</ul>
 
-					<p>Чтобы удалить рабочее пространство "{workspaceDetails.title}", введите его название</p>
+					<p>Чтобы удалить рабочее пространство <strong>&laquo;{workspaceDetails.title}&raquo;</strong>, введите его название</p>
 					<div className="field">
 						<input
 							className="field__control"

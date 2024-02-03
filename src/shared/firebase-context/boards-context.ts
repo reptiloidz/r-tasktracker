@@ -3,7 +3,7 @@ import { Board } from '../../entities/boards/components/board-collection/typings
 
 export const getBoards = async () => {
 	const boardsData = (
-		await getPromiseFactory({
+		await getPromiseFactory<Board[]>({
 			databaseUrl: '/boards',
 		})
 	) as Board[];

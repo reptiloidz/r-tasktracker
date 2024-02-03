@@ -4,7 +4,7 @@ import { PageHeaderProps } from './typings';
 const PageHeader = ({ title, children }: PageHeaderProps) => {
 	return (
 		<React.Fragment>
-			<div className="header">
+			<div className="header container">
 				<h2 className="header__title">{title}</h2>
 
 				{children}

@@ -6,6 +6,7 @@ import { useFirstRender } from '../../../../shared/hooks/isFirstRender';
 import { PageHeader } from '../../../../shared/components/page-header/PageHeader';
 import { Button } from '../../../../shared/ui/button/Button';
 import { useBoardDetails } from '../../../../shared/hooks/useBoardDetails';
+import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
 
 const BoardDetails = () => {
 	const { id } = useParams();
@@ -25,6 +26,25 @@ const BoardDetails = () => {
 
 	const boardSelectedTitle = boardSelected.title ? boardSelected.title : '';
 
+	// const onDragEndHandler = (result: any) => {
+	// 	const {destination, source, draggableId} = result;
+	//
+	// 	if (!destination) {
+	// 		return;
+	// 	}
+	//
+	// 	if (
+	// 		destination.droppableId === source.droppableId
+	// 		&& destination.index === source.index
+	// 	) {
+	// 		return;
+	// 	}
+	//
+	// 	const column = boardData.columns[source.droppableId];
+	//
+	// 	console.log(result);
+	// }
+
 	return (
 		<React.Fragment>
 			<PageHeader title={`Доска ${boardSelectedTitle}`}>
@@ -42,7 +62,6 @@ const BoardDetails = () => {
 					{errorText}
 				</p>
 			}
-
 			<ColumnCollection columns={columns} isLoading={loading} />
 		</React.Fragment>
 	);

@@ -5,6 +5,7 @@ import { CardNew } from '../../../cards/components/card-new/CardNew';
 import { database } from '../../../../app/firebase';
 import { useCards } from '../../../../shared/hooks/useCards';
 import { Loader } from '../../../../shared/components/loader/loader';
+import { Droppable } from 'react-beautiful-dnd';
 import {Simulate} from "react-dom/test-utils";
 
 type Props = {
@@ -29,9 +30,26 @@ const mockRequest = (ms: number, response: unknown) => {
 	});
 };
 
-mockRequest(5000, 1)
-	.then(console.log)
-	.catch(console.log)
+// mockRequest(5000, 1)
+// 	.then(console.log)
+// 	.catch(console.log);
+
+	// const dragOverHandler: any = (e: React.DragEvent, column: any, item: any) => {
+	// 	e.preventDefault();
+	// 	console.log(e.target)
+	// };
+	// const dragLeaveHandler: React.DragEventHandler = e => {
+	//
+	// };
+	// const dragStartHandler: React.DragEventHandler = e => {
+	//
+	// };
+	// const dragEndHandler: React.DragEventHandler = e => {
+	//
+	// };
+	// const dropHandler: any = (e: React.DragEvent, column: any, item: any) => {
+	// 	e.preventDefault();
+	// };
 
 const Column = ({ isLoading, column }: Props) => {
 	const [, cards, errorText] = useCards();
@@ -50,20 +68,37 @@ const Column = ({ isLoading, column }: Props) => {
 	}
 
 	return (
-		<div className="widget widget--primary">
-			<h2 className="widget__title">{column.title}</h2>
-			{errorText &&
-				<p>
-					{errorText}
-				</p>
-			}
-			{cards
-				.filter(card => card.relatedTo === column.id)
-				.map(card => (
-					<Card key={card.id} title={card.title} />
-				))}
-			<CardNew onAddCard={formSubmit} />
-		</div>
+			<div className="widget widget--primary">
+				<h2 className="widget__title">{column.title}</h2>
+				{errorText &&
+					<p>
+						{errorText}
+					</p>
+				}
+				<Droppable droppableId={column.id}>
+					{(provided) => (
+						<div
+							className="widget__inner"
+							ref={provided.innerRef}
+							{...provided.droppableProps}
+						>
+							{column.id}
+							{cards
+								.filter(card => card.relatedTo === column.id)
+								.map(card => (
+									<Card
+										key={card.id}
+										index={cards.indexOf(card)}
+										id={card.id || ''}
+										title={card.title}
+									/>
+							))}
+							{provided.placeholder}
+						</div>
+					)}
+				</Droppable>
+				<CardNew onAddCard={formSubmit} />
+			</div>
 	);
 };
 

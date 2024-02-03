@@ -3,7 +3,7 @@ import { Board } from '../../entities/boards/components/board-collection/typings
 import { Workspace } from '../../entities/workspaces/components/workspace-collection/typings';
 
 export const getWorkspaces = async () => {
-	const workspacesData = (await getPromiseFactory({
+	const workspacesData = (await getPromiseFactory<Workspace[]>({
 		databaseUrl: '/workspaces',
 	})) as Workspace[];
 

@@ -13,7 +13,7 @@ export const useBoards = (): [boolean, Board[], string?] => {
 			.then((response) => {
 				setBoards(response);
 			})
-			.catch((err) => {
+			.catch(err => {
 				setErrorText('Не можем получить доступные доски')
 				setBoards([]);
 			})
