@@ -2,9 +2,9 @@ import { getPromiseFactory } from './promise-factory';
 import { Card } from '../../entities/cards/components/card/typings';
 
 export const getCards = async () => {
-	const cardsData = (await getPromiseFactory<Card[]>({
+	const cardsData = await getPromiseFactory<Card[]>({
 		databaseUrl: '/cards',
-	})) as Card[];
+	});
 
 	return Object.keys(cardsData).map((key: any) => {
 		return {
